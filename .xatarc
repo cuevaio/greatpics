@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://greatpics-4n9d0o.us-east-1.xata.sh/db/app",
+  "codegen": {
+    "output": "src/lib/xata.ts"
+  }
+}
