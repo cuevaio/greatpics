@@ -9,7 +9,6 @@ export const ourFileRouter = {
     .middleware(async () => {
       if (ratelimit) {
         const client_id = await getClientID();
-        console.log("ut", { client_id });
         const identifier = `api/uploadthing:${client_id}`;
         const result = await ratelimit.limit(identifier);
 

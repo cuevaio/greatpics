@@ -20,7 +20,6 @@ const schema = z.object({
 export async function POST(request: Request) {
   try {
     const client_id = await getClientID();
-    console.log("pics", { client_id });
     const identifier = `api/pics:${client_id}`;
     const result = await ratelimit.limit(identifier);
 

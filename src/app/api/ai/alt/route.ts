@@ -16,7 +16,6 @@ export const runtime = "edge";
 export async function POST(request: Request) {
   try {
     const client_id = await getClientID();
-    console.log("alt", { client_id });
     const identifier = `api/ai/alt:${client_id}`;
     const result = await ratelimit.limit(identifier);
 

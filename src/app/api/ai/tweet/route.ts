@@ -16,7 +16,6 @@ export const runtime = "edge";
 export async function POST(request: Request) {
   try {
     const client_id = await getClientID();
-    console.log("tweet", { client_id });
     const identifier = `api/ai/tweet:${client_id}`;
     const result = await ratelimit.limit(identifier);
 
