@@ -31,7 +31,7 @@ export const Navbar = () => {
         </Link>
         <div className="flex items-center space-x-4">
           <a
-            href="https://github.com/steven-tey/extrapolate"
+            href="https://github.com/cuevantn/greatpics"
             target="_blank"
             rel="noopener noreferrer"
           >

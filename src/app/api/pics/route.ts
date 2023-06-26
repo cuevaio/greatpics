@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     });
 
     const output = await replicate.run(
-      "salesforce/blip:2e1dddc8621f72155f24cf2e0adbde548458d3cab9f00c0139eea840d0ac4746",
+      "rmokady/clip_prefix_caption:9a34a6339872a03f45236f114321fb51fc7aa8269d38ae0ce5334969981e4cd8",
       {
         input: {
           image: data.url,
