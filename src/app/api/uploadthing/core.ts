@@ -1,31 +1,25 @@
-/** app/api/uploadthing/core.ts */
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-
+import { ratelimit } from "@/lib/redis";
+import { getClientID } from "@/lib/utils/get-client-id";
 const f = createUploadthing();
 
-const auth = async (req: Request) => ({ id: "fakeId" }); // Fake auth function
-
-// FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
-  // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({ image: { maxFileSize: "4MB" } })
-    // Set permissions and file types for this FileRoute
-    .middleware(async ({ req, input }) => {
-      // This code runs on your server before upload
-      const user = await auth(req);
+    // @ts-ignore
+    .middleware(async () => {
+      if (ratelimit) {
+        const client_id = await getClientID();
+        console.log("ut", { client_id });
+        const identifier = `api/uploadthing:${client_id}`;
+        const result = await ratelimit.limit(identifier);
 
-      // If you throw, the user will not be able to upload
-      if (!user) throw new Error("Unauthorized");
-
-      // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user.id, input };
-    })
-    .onUploadComplete(async () => {
-      try {
-      } catch (e) {
-        console.error(e);
+        console.log(result);
+        if (!result.success) {
+          throw new Error("429");
+        }
       }
-    }),
+    })
+    .onUploadComplete(async () => {}),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

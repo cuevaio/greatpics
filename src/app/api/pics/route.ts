@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+import { ratelimit } from "@/lib/redis";
+import { getClientID } from "@/lib/utils/get-client-id";
+
 import { NextResponse } from "next/server";
 import { getXataClient } from "@/lib/xata";
 
@@ -16,6 +19,22 @@ const schema = z.object({
 
 export async function POST(request: Request) {
   try {
+    const client_id = await getClientID();
+    console.log("pics", { client_id });
+    const identifier = `api/pics:${client_id}`;
+    const result = await ratelimit.limit(identifier);
+
+    if (!result.success) {
+      return new Response("Exceeded maximum api calls quote", {
+        status: 429,
+        headers: {
+          "X-RateLimit-Limit": String(result.limit),
+          "X-RateLimit-Remaining": String(result.remaining),
+          "X-RateLimit-Reset": String(result.reset),
+        },
+      });
+    }
+
     const { url, aspect_ratio } = await request.json();
 
     const data = schema.parse({
@@ -46,6 +65,11 @@ export async function POST(request: Request) {
       },
       {
         status: 200,
+        headers: {
+          "X-RateLimit-Limit": String(result.limit),
+          "X-RateLimit-Remaining": String(result.remaining),
+          "X-RateLimit-Reset": String(result.reset),
+        },
       }
     );
   } catch (e) {

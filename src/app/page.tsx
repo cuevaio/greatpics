@@ -39,8 +39,8 @@ const Home = () => {
         >
           <Balancer ratio={0.6}>
             Not sure about what to tweet with those pictures? Let the AI come to
-            the rescue! Create powerful tweets with accessible images that
-            take your content to new horizons.
+            the rescue! Create powerful tweets with accessible images that take
+            your content to new horizons.
           </Balancer>
         </motion.p>
       </div>
