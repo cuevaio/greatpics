@@ -1,3 +1,6 @@
+"use client";
+
+import * as React from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { Dot } from "lucide-react";
@@ -11,6 +14,21 @@ import {
 } from "@/components/ui/popover";
 
 import { PopoverClose } from "@radix-ui/react-popover";
+
+interface User {
+  name: string;
+  username: string;
+}
+
+const fetchUser = async () => {
+  const res = await fetch("https://randomuser.me/api?nat=us,fr&inc=name,login");
+  const data = await res.json();
+
+  const username = data.results[0].login.username;
+  const name = data.results[0].name.first + " " + data.results[0].name.last;
+  return { username, name } as User;
+};
+
 export const TweetPreview = ({
   url,
   aspect_ratio,
@@ -22,6 +40,16 @@ export const TweetPreview = ({
   alt: string;
   tweet: string;
 }) => {
+  const profile_pic_seed = React.useRef<string>(
+    (Math.random() + 1).toString(36).substring(7)
+  );
+  const [user, setUser] = React.useState<User | null>(null);
+  const profile_pic = `https://api.dicebear.com/6.x/adventurer/svg?seed=${profile_pic_seed.current}`;
+
+  React.useEffect(() => {
+    fetchUser().then((user) => setUser(user));
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.75 }}
@@ -31,20 +59,28 @@ export const TweetPreview = ({
     >
       <Image
         alt={alt}
-        src="https://pbs.twimg.com/profile_images/1593304942210478080/TUYae5z7_400x400.jpg"
+        src={profile_pic}
         width={40}
         height={40}
-        className="w-10 h-10 rounded-full"
+        className="w-12 h-12 rounded-full bg-border"
       />
       <div className="flex flex-col w-full">
-        <div className="flex gap-1">
-          <div className="font-bold">Elon Musk</div>
-          <div className="text-muted-foreground">@elonmusk</div>
-          <div className="flex items-center justify-center">
-            <Dot className="w-2 h-2" />
+        {user ? (
+          <div className="flex gap-1">
+            <div className="font-bold">{user?.name}</div>
+            <div className="text-muted-foreground">@{user?.username}</div>
+            <div className="flex items-center justify-center">
+              <Dot className="w-2 h-2" />
+            </div>
+            <div className="text-foreground">1h</div>
           </div>
-          <div className="text-foreground">1h</div>
-        </div>
+        ) : (
+          <div className="flex gap-1 w-[80%] mb-2">
+            <div className="w-[50%] h-4 bg-border animate-pulse rounded-full" />
+            <div className="w-[40%] h-4 bg-border animate-pulse rounded-full" />
+            <div className="w-[10%] h-4 bg-border animate-pulse rounded-full" />
+          </div>
+        )}
         <div className="mb-3">{tweet}</div>
 
         <div
