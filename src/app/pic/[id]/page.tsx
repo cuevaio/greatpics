@@ -16,7 +16,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     return (
       <div className="text-center">
         <h1 className="font-black text-4xl">404</h1>
-        <p className="">We couldn't find that page...</p>
+        <p className="">We couldn{`&apos;`}t find that page...</p>
       </div>
     );
   }
