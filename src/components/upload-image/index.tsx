@@ -19,7 +19,7 @@ export const UploadImage = () => {
         <motion.button
           className={cn(
             buttonVariants({ variant: "default" }),
-            "flex mx-auto my-4"
+            "flex mx-auto my-4 rounded-lg"
           )}
           variants={{
             hidden: { opacity: 0, y: -10 },
@@ -29,15 +29,14 @@ export const UploadImage = () => {
           <UploadCloud className="w-4 h-4 mr-2" /> Upload photo
         </motion.button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] p-0 gap-0 divide-y">
+      <DialogContent className="sm:max-w-[425px] p-0 gap-0 divide-y rounded-lg">
         <DialogHeader className="p-8">
           <DialogTitle className="font-bold text-xl text-center">
             Upload your pic
           </DialogTitle>
           <DialogDescription className="text-center">
-            It will take around 30 seconds to upload your image and create a
-            caption for it. All your images will be automatically deleted after
-            24 hours.
+            It will take around 10 seconds to upload your image and create a
+            caption for it.
           </DialogDescription>
         </DialogHeader>
         <div className="p-10 bg-secondary">

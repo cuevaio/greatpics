@@ -55,8 +55,11 @@ export const TweetPreview = ({
       initial={{ opacity: 0, scale: 0.75 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="mx-auto max-w-xl flex gap-4 border rounded-xl p-4 pr-8"
+      className="relative mx-auto max-w-xl flex gap-4 border rounded-lg p-4 pr-8"
     >
+      <span className="absolute -top-6 left-0 font-bold text-muted-foreground">
+        Output
+      </span>
       <Image
         alt={alt}
         src={profile_pic}
@@ -72,7 +75,7 @@ export const TweetPreview = ({
             <div className="flex items-center justify-center">
               <Dot className="w-2 h-2" />
             </div>
-            <div className="text-foreground">1h</div>
+            <div className="text-muted-foreground">1h</div>
           </div>
         ) : (
           <div className="flex gap-1 w-[80%] mb-2">
@@ -84,31 +87,32 @@ export const TweetPreview = ({
         <div className="mb-3">{tweet}</div>
 
         <div
-          className={cn("rounded-xl border overflow-hidden", {
+          className={cn("rounded-xl border overflow-hidden relative", {
             "max-w-sm": aspect_ratio === 4 / 5 || aspect_ratio === 3 / 4,
           })}
         >
-          <AspectRatio ratio={aspect_ratio} className="relative">
+          <AspectRatio ratio={aspect_ratio} className="">
             <Image alt={alt} src={url} fill className="object-cover" />
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button className="absolute bottom-2 left-2 h-min w-min py-1 px-2 font-bold tracking-wide bg-black/70 hover:bg-black/80">
-                  ALT
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-80 rounded-xl">
-                <div>
-                  <div className="font-bold text-2xl">Image description</div>
-                  <div className="my-2 text-sm">{alt}</div>
-                  <PopoverClose asChild>
-                    <Button className="mt-2 w-full rounded-full font-bold text-lg">
-                      Dismiss
-                    </Button>
-                  </PopoverClose>
-                </div>
-              </PopoverContent>
-            </Popover>
           </AspectRatio>
+
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button className="absolute bottom-2 left-2 h-min w-min py-1 px-2 font-bold tracking-wide bg-black/70 hover:bg-black/80">
+                ALT
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80 rounded-lg">
+              <div>
+                <div className="font-bold text-2xl">Image description</div>
+                <div className="my-2 text-sm">{alt}</div>
+                <PopoverClose asChild>
+                  <Button className="mt-2 w-full rounded-full font-bold text-lg">
+                    Dismiss
+                  </Button>
+                </PopoverClose>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </motion.div>

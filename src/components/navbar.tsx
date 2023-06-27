@@ -25,7 +25,7 @@ export const Navbar = () => {
             alt="Logo image of a chat bubble"
             width="30"
             height="30"
-            className="mr-2 rounded-sm"
+            className="mr-2"
           ></Image>
           <p>Great Pics</p>
         </Link>

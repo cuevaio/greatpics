@@ -81,7 +81,7 @@ export const UploadImageDialogContent = () => {
   });
   return (
     <div className="w-full flex flex-col gap-y-2">
-      <div className="relative overflow-hidden border rounded-xl">
+      <div className="relative overflow-hidden border rounded-lg">
         <AspectRatio ratio={aspectRatio}>
           {file ? (
             <ImagePreview
@@ -109,7 +109,7 @@ export const UploadImageDialogContent = () => {
           <Button
             type="submit"
             disabled={!file || isUploading || captioning}
-            className="w-full"
+            className="w-full rounded-lg"
           >
             {(isUploading || captioning) && (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
