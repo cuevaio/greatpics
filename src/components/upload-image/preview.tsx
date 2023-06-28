@@ -63,7 +63,7 @@ export const ImagePreview = ({
           type="submit"
           className="m-2 bg-white/50 hover:bg-white/75 w-6 h-6  absolute top-0 right-0"
         >
-          <X className="w-3 h-3 text-zinc-600" />
+          <X className="w-3 h-3 text-slate-600" />
         </Button>
       </form>
     </>

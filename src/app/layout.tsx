@@ -3,6 +3,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import { Footer } from "@/components/footer";
 
 const unbounded = Montserrat({ subsets: ["latin"] });
 
@@ -23,7 +24,8 @@ export default function RootLayout({
         <div className="-z-50 fixed h-screen w-full bg-gradient-to-br from-indigo-50 from-10% via-sky-50 via-30% to-emerald-50 to-90% " />
         <div id="content" className="w-full h-screen overflow-auto">
           <Navbar />
-          <main className="container my-16">{children}</main>
+          <main className="min-h-screen container my-16">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

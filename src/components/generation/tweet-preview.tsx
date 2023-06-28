@@ -66,7 +66,7 @@ export const TweetPreview = ({
       />
       <div className="flex flex-col w-full">
         {user ? (
-          <div className="flex gap-1">
+          <div className="flex flex-wrap gap-x-1">
             <div className="font-bold">{user?.name}</div>
             <div className="text-muted-foreground">@{user?.username}</div>
             <div className="flex items-center justify-center">

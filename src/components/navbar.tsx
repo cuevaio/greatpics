@@ -1,8 +1,6 @@
 "use client";
 
-import { Github } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils/ui";
 import { useScroll } from "@/lib/hooks/use-scroll";
 
@@ -13,21 +11,15 @@ export const Navbar = () => {
     <div
       className={cn(
         "sticky top-0 w-full",
-        { "border-b border-gray-200 bg-white/50 backdrop-blur-xl": scrolled },
+        { "border-b border-slate-200 bg-white/50 backdrop-blur-xl": scrolled },
         { "bg-white/0": !scrolled },
         "z-50 transition-all"
       )}
     >
       <div className="flex h-16 container items-center justify-between">
         <Link href="/" className="flex items-center font-bold text-2xl">
-          <Image
-            src="/favicon.ico"
-            alt="Logo image of a chat bubble"
-            width="30"
-            height="30"
-            className="mr-2"
-          ></Image>
-          <p>Great Pics</p>
+          <span className="-mt-1.5 mr-1">🤖</span>
+          <span>Great Pics</span>
         </Link>
         <div className="flex items-center space-x-4">
           <a
