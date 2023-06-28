@@ -55,7 +55,7 @@ export async function POST(request: Request) {
         },
         {
           role: "user",
-          content: "Draft: " + draft,
+          content: draft,
         },
       ],
       temperature: 0.7,
@@ -65,23 +65,6 @@ export async function POST(request: Request) {
       stream: true,
       n: 1,
     });
-
-    // Ask OpenAI for a streaming completion given the prompt
-    //     const response = await openai.createCompletion({
-    //       model: "text-davinci-003",
-    //       stream: true,
-    //       temperature: 0.6,
-    //       max_tokens: 256,
-    //       top_p: 1,
-    //       frequency_penalty: 0,
-    //       presence_penalty: 0,
-    //       prompt: `Given the draft of a tweet, improve it to be trending while keeping the writing style.
-    // draft tweet:
-    // ${draft}
-
-    // improved tweet:
-    // `,
-    //     });
 
     // Convert the response into a friendly text-stream
     const stream = OpenAIStream(response);

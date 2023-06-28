@@ -35,9 +35,6 @@ export const GenerationForm = ({
       }}
     >
       <div className="relative w-full mx-auto flex items-center gap-4">
-        <span className="absolute -top-6 left-0 font-bold text-muted-foreground">
-          Input
-        </span>
         <Picture url={url} aspect_ratio={aspect_ratio} />
 
         <Textarea

@@ -57,9 +57,6 @@ export const TweetPreview = ({
       transition={{ duration: 0.5 }}
       className="relative mx-auto max-w-xl flex gap-4 border rounded-lg p-4 pr-8"
     >
-      <span className="absolute -top-6 left-0 font-bold text-muted-foreground">
-        Output
-      </span>
       <Image
         alt={alt}
         src={profile_pic}

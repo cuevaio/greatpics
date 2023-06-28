@@ -19,7 +19,7 @@ export const UploadImage = () => {
         <motion.button
           className={cn(
             buttonVariants({ variant: "default" }),
-            "flex mx-auto my-4 rounded-lg"
+            "flex mx-auto my-8 rounded-lg"
           )}
           variants={{
             hidden: { opacity: 0, y: -10 },
@@ -35,8 +35,7 @@ export const UploadImage = () => {
             Upload your pic
           </DialogTitle>
           <DialogDescription className="text-center">
-            It will take around 10 seconds to upload your image and create a
-            caption for it.
+            It will take around 30 seconds to upload and caption your image.
           </DialogDescription>
         </DialogHeader>
         <div className="p-10 bg-secondary">

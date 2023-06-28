@@ -47,15 +47,19 @@ export async function POST(request: Request) {
         {
           role: "system",
           content:
-            "You are an AI content creation assistant that generates alt text for pictures. " +
-            "You will receive a AI generated caption for the picture and the draft written by a user. " +
-            "To generate the alt text, improve the caption using details you infere from the draft. " +
-            "Be as accesible as possible. " +
+            "You are my AI content creation assistant that generates alt text for pictures. " +
+            "You will receive a basic caption for the picture and the draft written by me. " +
+            "Improve the caption by infering the context in the draft. " +
             "Limit your response to no more than 280 characters, but make sure to construct complete sentences. ",
         },
         {
           role: "user",
-          content: "Caption: " + caption + "\nDraft: " + draft,
+          content:
+            "Here is the caption: `" +
+            caption +
+            "`\n and here is the draft: `" +
+            draft +
+            "`",
         },
       ],
       temperature: 0.7,

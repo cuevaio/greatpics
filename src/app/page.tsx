@@ -3,6 +3,7 @@
 import { UploadImage } from "@/components/upload-image";
 import Balancer from "react-wrap-balancer";
 import { motion } from "framer-motion";
+import { Demo } from "@/components/demo";
 
 const Home = () => {
   return (
@@ -38,13 +39,13 @@ const Home = () => {
           }}
         >
           <Balancer ratio={0.6}>
-            Not sure about what to tweet with those pictures? Let the AI come to
-            the rescue! Create powerful tweets with accessible images that take
-            your content to new horizons.
+            Not sure about what to tweet with those pictures? Let AI come to the
+            rescue! Create powerful tweets with accessible images in seconds.
           </Balancer>
         </motion.p>
       </div>
       <UploadImage />
+      <Demo />
     </motion.div>
   );
 };
