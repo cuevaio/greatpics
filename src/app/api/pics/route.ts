@@ -19,19 +19,28 @@ const schema = z.object({
 
 export async function POST(request: Request) {
   try {
-    const client_id = await getClientID();
-    const identifier = `api/pics:${client_id}`;
-    const result = await ratelimit.limit(identifier);
+    let result: {
+      success: boolean;
+      limit: number;
+      remaining: number;
+      reset: number;
+    } | null = null;
 
-    if (!result.success) {
-      return new Response("Exceeded maximum api calls quote", {
-        status: 429,
-        headers: {
-          "X-RateLimit-Limit": String(result.limit),
-          "X-RateLimit-Remaining": String(result.remaining),
-          "X-RateLimit-Reset": String(result.reset),
-        },
-      });
+    if (!!process.env.VERCEL) {
+      const client_id = await getClientID();
+      const identifier = `api/pics:${client_id}`;
+      result = await ratelimit.limit(identifier);
+
+      if (!result.success) {
+        return new Response("Exceeded maximum api calls quote", {
+          status: 429,
+          headers: {
+            "X-RateLimit-Limit": String(result.limit),
+            "X-RateLimit-Remaining": String(result.remaining),
+            "X-RateLimit-Reset": String(result.reset),
+          },
+        });
+      }
     }
 
     const { url, aspect_ratio } = await request.json();
@@ -45,14 +54,14 @@ export async function POST(request: Request) {
       "salesforce/blip:2e1dddc8621f72155f24cf2e0adbde548458d3cab9f00c0139eea840d0ac4746",
       {
         input: {
-          image: data.url
+          image: data.url,
         },
       }
     );
 
     const pic = await getXataClient().db.pic.create({
       url,
-      caption: String(output),
+      caption: String(output).replace("Caption: ", ""),
       aspect_ratio,
     });
 
@@ -64,11 +73,13 @@ export async function POST(request: Request) {
       },
       {
         status: 200,
-        headers: {
-          "X-RateLimit-Limit": String(result.limit),
-          "X-RateLimit-Remaining": String(result.remaining),
-          "X-RateLimit-Reset": String(result.reset),
-        },
+        headers: result
+          ? {
+              "X-RateLimit-Limit": String(result.limit),
+              "X-RateLimit-Remaining": String(result.remaining),
+              "X-RateLimit-Reset": String(result.reset),
+            }
+          : {},
       }
     );
   } catch (e) {

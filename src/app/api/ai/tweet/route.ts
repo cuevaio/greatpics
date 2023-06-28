@@ -15,49 +15,85 @@ export const runtime = "edge";
 
 export async function POST(request: Request) {
   try {
-    const client_id = await getClientID();
-    const identifier = `api/ai/tweet:${client_id}`;
-    const result = await ratelimit.limit(identifier);
+    let result: {
+      success: boolean;
+      limit: number;
+      remaining: number;
+      reset: number;
+    } | null = null;
 
-    if (!result.success) {
-      return new Response("Exceeded maximum api calls quote", {
-        status: 429,
-        headers: {
-          "X-RateLimit-Limit": String(result.limit),
-          "X-RateLimit-Remaining": String(result.remaining),
-          "X-RateLimit-Reset": String(result.reset),
-        },
-      });
+    if (!!process.env.VERCEL) {
+      const client_id = await getClientID();
+      const identifier = `api/ai/tweet:${client_id}`;
+      result = await ratelimit.limit(identifier);
+
+      if (!result.success) {
+        return new Response("Exceeded maximum api calls quote", {
+          status: 429,
+          headers: {
+            "X-RateLimit-Limit": String(result.limit),
+            "X-RateLimit-Remaining": String(result.remaining),
+            "X-RateLimit-Reset": String(result.reset),
+          },
+        });
+      }
     }
 
     const { draft } = await request.json();
 
-    // Ask OpenAI for a streaming completion given the prompt
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      stream: true,
-      temperature: 0.6,
-      max_tokens: 256,
+    // Ask OpenAI for a streaming chat completion given the prompt
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are an AI content creation assistant that generates trending tweets. " +
+            "You will receive the draft written by a user. " +
+            "Keep writting style and improve the draft to generate the perfect tweet. " +
+            "Limit your response to no more than 280 characters. ",
+        },
+        {
+          role: "user",
+          content: "Draft: " + draft,
+        },
+      ],
+      temperature: 0.7,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
-      prompt: `Given the draft of a tweet, improve it to be trending while keeping the writing style.
-draft tweet:
-${draft}
-
-improved tweet:
-`,
+      stream: true,
+      n: 1,
     });
+
+    // Ask OpenAI for a streaming completion given the prompt
+    //     const response = await openai.createCompletion({
+    //       model: "text-davinci-003",
+    //       stream: true,
+    //       temperature: 0.6,
+    //       max_tokens: 256,
+    //       top_p: 1,
+    //       frequency_penalty: 0,
+    //       presence_penalty: 0,
+    //       prompt: `Given the draft of a tweet, improve it to be trending while keeping the writing style.
+    // draft tweet:
+    // ${draft}
+
+    // improved tweet:
+    // `,
+    //     });
 
     // Convert the response into a friendly text-stream
     const stream = OpenAIStream(response);
     // Respond with the stream
     return new StreamingTextResponse(stream, {
-      headers: {
-        "X-RateLimit-Limit": String(result.limit),
-        "X-RateLimit-Remaining": String(result.remaining),
-        "X-RateLimit-Reset": String(result.reset),
-      },
+      headers: result
+        ? {
+            "X-RateLimit-Limit": String(result.limit),
+            "X-RateLimit-Remaining": String(result.remaining),
+            "X-RateLimit-Reset": String(result.reset),
+          }
+        : {},
     });
   } catch (error) {
     console.error(error);

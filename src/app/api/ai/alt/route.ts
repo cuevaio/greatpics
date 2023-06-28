@@ -15,23 +15,32 @@ export const runtime = "edge";
 
 export async function POST(request: Request) {
   try {
-    const client_id = await getClientID();
-    const identifier = `api/ai/alt:${client_id}`;
-    const result = await ratelimit.limit(identifier);
+    let result: {
+      success: boolean;
+      limit: number;
+      remaining: number;
+      reset: number;
+    } | null = null;
 
-    if (!result.success) {
-      return new Response("Exceeded maximum api calls quote", {
-        status: 429,
-        headers: {
-          "X-RateLimit-Limit": String(result.limit),
-          "X-RateLimit-Remaining": String(result.remaining),
-          "X-RateLimit-Reset": String(result.reset),
-        },
-      });
+    if (!!process.env.VERCEL) {
+      const client_id = await getClientID();
+      const identifier = `api/ai/alt:${client_id}`;
+      result = await ratelimit.limit(identifier);
+
+      if (!result.success) {
+        return new Response("Exceeded maximum api calls quote", {
+          status: 429,
+          headers: {
+            "X-RateLimit-Limit": String(result.limit),
+            "X-RateLimit-Remaining": String(result.remaining),
+            "X-RateLimit-Reset": String(result.reset),
+          },
+        });
+      }
     }
 
     const { caption, draft } = await request.json();
-    // Ask OpenAI for a streaming completion given the prompt
+    // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
@@ -61,11 +70,13 @@ export async function POST(request: Request) {
     const stream = OpenAIStream(response);
     // Respond with the stream
     return new StreamingTextResponse(stream, {
-      headers: {
-        "X-RateLimit-Limit": String(result.limit),
-        "X-RateLimit-Remaining": String(result.remaining),
-        "X-RateLimit-Reset": String(result.reset),
-      },
+      headers: result
+        ? {
+            "X-RateLimit-Limit": String(result.limit),
+            "X-RateLimit-Remaining": String(result.remaining),
+            "X-RateLimit-Reset": String(result.reset),
+          }
+        : {},
     });
   } catch (error) {
     console.error(error);
