@@ -23,13 +23,11 @@ export const Demo = () => {
   });
 
   return (
-    <div id="demo">
-      <TweetPreview
-        url="https://uploadthing.com/f/882ebe0c-913b-4b61-9c80-d6c03012ed3a_pexels-olena-bohovyk-3794382.jpg"
-        tweet={tweet}
-        alt={alt}
-        aspect_ratio={0.75}
-      />
-    </div>
+    <TweetPreview
+      url="https://uploadthing.com/f/882ebe0c-913b-4b61-9c80-d6c03012ed3a_pexels-olena-bohovyk-3794382.jpg"
+      tweet={tweet}
+      alt={alt}
+      aspect_ratio={0.75}
+    />
   );
 };

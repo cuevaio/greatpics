@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ratelimit } from "@/lib/redis";
+import { imageRatelimit } from "@/lib/redis";
 import { getClientID } from "@/lib/utils/get-client-id";
 
 import { NextResponse } from "next/server";
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     if (!!process.env.VERCEL) {
       const client_id = await getClientID();
       const identifier = `api/pics:${client_id}`;
-      result = await ratelimit.limit(identifier);
+      result = await imageRatelimit.limit(identifier);
 
       if (!result.success) {
         return new Response("Exceeded maximum api calls quote", {

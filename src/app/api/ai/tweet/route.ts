@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { ratelimit } from "@/lib/redis";
+import { aiRatelimit } from "@/lib/redis";
 import { getClientID } from "@/lib/utils/get-client-id";
 
 // Create an OpenAI API client (that's edge friendly!)
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     if (!!process.env.VERCEL) {
       const client_id = await getClientID();
       const identifier = `api/ai/tweet:${client_id}`;
-      result = await ratelimit.limit(identifier);
+      result = await aiRatelimit.limit(identifier);
 
       if (!result.success) {
         return new Response("Exceeded maximum api calls quote", {

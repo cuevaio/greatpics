@@ -46,6 +46,14 @@ export const UploadImageDialogContent = () => {
             if (response.ok) {
               const data = await response.json();
               router.push(`/pic/${data.id}`);
+            } else if (response.status === 429) {
+              toast({
+                variant: "destructive",
+                title: "Oops! Too many requests for now :(",
+                description:
+                  "You are being rate limited. You can caption up to 3 images per hour. Please try again later.",
+              });
+              setCaptioning(false);
             } else {
               toast({
                 variant: "destructive",
@@ -62,13 +70,22 @@ export const UploadImageDialogContent = () => {
           captionAndRedirect();
         }
       },
-      onUploadError: () => {
-        toast({
-          variant: "destructive",
-          title: "Uh oh! Something went wrong.",
-          description: "There was a problem uploading your image.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        });
+      onUploadError: (e) => {
+        if (e.message === "429") {
+          toast({
+            variant: "destructive",
+            title: "Oops! Too many requests for now :(",
+            description:
+              "You are being rate limited. You can upload up to 3 images per hour. Please try again later.",
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: "There was a problem uploading your image.",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+        }
       },
     }
   );
