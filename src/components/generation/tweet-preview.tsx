@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Image from "next/image";
 import { Dot } from "lucide-react";
-import { AspectRatio } from "./ui/aspect-ratio";
+import { AspectRatio } from "../ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils/ui";
 import {

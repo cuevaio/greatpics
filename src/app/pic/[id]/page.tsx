@@ -1,4 +1,4 @@
-import { AIThing } from "@/components/ai";
+import { Generation } from "@/components/generation";
 import { getXataClient } from "@/lib/xata";
 
 const getPic = async (id: string) => {
@@ -23,7 +23,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="">
-      <AIThing
+      <Generation
         url={pic?.url || ""}
         caption={pic?.caption || ""}
         aspect_ratio={pic.aspect_ratio || 1 / 1}
