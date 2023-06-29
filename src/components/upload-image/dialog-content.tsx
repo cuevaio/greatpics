@@ -79,11 +79,10 @@ export const UploadImageDialogContent = () => {
               "You are being rate limited. You can upload up to 3 images per hour. Please try again later.",
           });
         } else {
-          console.error(e);
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: "There was a problem uploading your image." + JSON.stringify(e),
+            description: "There was a problem uploading your image.",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
         }
@@ -97,6 +96,7 @@ export const UploadImageDialogContent = () => {
     accept: fileTypes ? generateClientDropzoneAccept(fileTypes) : undefined,
     multiple: false,
   });
+
   return (
     <div className="w-full flex flex-col gap-y-2">
       <div className="relative overflow-hidden border rounded-lg">

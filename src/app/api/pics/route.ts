@@ -67,9 +67,8 @@ export async function POST(request: Request) {
     });
 
     const id = pic.id.split("_")[1];
-    console.log(id)
 
-    const res = NextResponse.json(
+    return NextResponse.json(
       {
         id,
       },
@@ -84,11 +83,8 @@ export async function POST(request: Request) {
           : {},
       }
     );
-    console.log(res)
-    return res;
   } catch (e) {
     console.error(e);
-    console.log(JSON.stringify(e));
     return NextResponse.json(
       {
         error: "Something went wrong.",
