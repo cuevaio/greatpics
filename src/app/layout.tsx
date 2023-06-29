@@ -21,8 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(unbounded.className, "bg-white")}>
         <Toaster />
-        <div className="-z-50 fixed h-screen w-full bg-gradient-to-br from-indigo-50 from-10% via-sky-50 via-30% to-emerald-50 to-90% " />
-        <div id="content" className="w-full h-screen overflow-auto">
+        <div className="-z-50 fixed h-[100dvh] w-full bg-gradient-to-br from-indigo-50 from-10% via-sky-50 via-30% to-emerald-50 to-90% " />
+        <div id="content" className="w-full h-[100dvh] overflow-auto">
           <Navbar />
           <main className="min-h-screen container mt-16 mb-20">{children}</main>
           <Footer />
