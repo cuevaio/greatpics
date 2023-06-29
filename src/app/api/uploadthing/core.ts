@@ -8,6 +8,7 @@ export const ourFileRouter = {
     // @ts-ignore
     .middleware(async () => {
       if (!!process.env.VERCEL) {
+        console.log("vercel")
         const client_id = await getClientID();
         const identifier = `api/uploadthing:${client_id}`;
         const result = await imageRatelimit.limit(identifier);
@@ -16,8 +17,11 @@ export const ourFileRouter = {
           throw new Error("429");
         }
       }
+      console.log("cool")
     })
-    .onUploadComplete(async () => {}),
+    .onUploadComplete(async ({ file }) => {
+      console.log(file)
+    }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
