@@ -40,11 +40,21 @@ export const TweetPreview = ({
   alt: string;
   tweet: string;
 }) => {
-  const profile_pic_seed = React.useRef<string>(
-    (Math.random() + 1).toString(36).substring(7)
-  );
   const [user, setUser] = React.useState<User | null>(null);
-  const profile_pic = `https://api.dicebear.com/6.x/adventurer/svg?seed=${profile_pic_seed.current}`;
+  const profile_pic = React.useMemo(() => {
+    const options = [
+      "lorelei",
+      "micah",
+      "notionists",
+      "open-peeps",
+      "avataaars",
+      "big-ears",
+      "croodles",
+    ];
+    const random = Math.floor(Math.random() * options.length);
+    const seed = (Math.random() + 1).toString(36).substring(7);
+    return `https://api.dicebear.com/6.x/${options[random]}/svg?seed=${seed}`;
+  }, []);
 
   React.useEffect(() => {
     fetchUser().then((user) => setUser(user));

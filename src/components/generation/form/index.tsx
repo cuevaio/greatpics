@@ -27,18 +27,18 @@ export const GenerationForm = ({
 }) => {
   return (
     <form
-      className="w-full flex flex-col gap-2 mb-10"
+      className="w-full flex flex-col gap-4 mb-10"
       onSubmit={(event) => {
         event.preventDefault();
         completeAlt("");
         completeTweet("");
       }}
     >
-      <div className="relative w-full mx-auto flex items-center gap-4">
+      <div className="relative w-full mx-auto flex items-center gap-x-4">
         <Picture url={url} aspect_ratio={aspect_ratio} />
 
         <Textarea
-          className="resize-none	absolute top-0 bottom-0 left-36 right-0 w-auto rounded-lg"
+          className="resize-none absolute top-0 bottom-0 left-36 right-0 w-auto min-h-[auto] rounded-lg"
           value={draft}
           placeholder="A draft of your tweet..."
           onChange={(e) => {
