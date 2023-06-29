@@ -4,7 +4,7 @@ import { getClientID } from "@/lib/utils/get-client-id";
 const f = createUploadthing();
 
 export const ourFileRouter = {
-  imageUploader: f({ image: { maxFileSize: "4MB" } })
+  imageUploader: f({ image: { maxFileSize: "8MB" } })
     // @ts-ignore
     .middleware(async () => {
       if (!!process.env.VERCEL) {
