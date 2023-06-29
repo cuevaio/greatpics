@@ -1,4 +1,5 @@
 import { z } from "zod";
+export const runtime = "edge";
 
 import { imageRatelimit } from "@/lib/redis";
 import { getClientID } from "@/lib/utils/get-client-id";
@@ -66,8 +67,9 @@ export async function POST(request: Request) {
     });
 
     const id = pic.id.split("_")[1];
+    console.log(id)
 
-    return NextResponse.json(
+    const res = NextResponse.json(
       {
         id,
       },
@@ -82,8 +84,11 @@ export async function POST(request: Request) {
           : {},
       }
     );
+    console.log(res)
+    return res;
   } catch (e) {
     console.error(e);
+    console.log(JSON.stringify(e));
     return NextResponse.json(
       {
         error: "Something went wrong.",
