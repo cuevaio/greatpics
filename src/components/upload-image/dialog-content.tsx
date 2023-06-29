@@ -79,10 +79,11 @@ export const UploadImageDialogContent = () => {
               "You are being rate limited. You can upload up to 3 images per hour. Please try again later.",
           });
         } else {
+          console.error(e);
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: "There was a problem uploading your image.",
+            description: "There was a problem uploading your image." + JSON.stringify(e),
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
         }
