@@ -5,6 +5,13 @@ import Balancer from "react-wrap-balancer";
 import { motion } from "framer-motion";
 import { Demo } from "@/components/demo";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 const Home = () => {
   return (
     <>
@@ -43,7 +50,18 @@ const Home = () => {
           >
             <Balancer ratio={0.6}>
               Not sure about what to tweet with those pictures? Let AI come to
-              the rescue! Create powerful tweets optimized for a11y in seconds.
+              the rescue! Create powerful tweets optimized for{" "}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger className="decoration-dotted underline">
+                    a11y
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>accessibility</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>{" "}
+              in seconds.
             </Balancer>
           </motion.p>
         </div>
