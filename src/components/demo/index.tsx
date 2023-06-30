@@ -47,7 +47,7 @@ export const Demo = () => {
 
   return (
     <div
-      className="w-[32rem] min-h-[32rem] relative flex flex-col items-center mx-auto"
+      className="w-[90%] sm:w-[32rem] min-h-[32rem] relative flex flex-col items-center mx-auto"
       ref={ref}
     >
       <AnimatePresence custom={{ direction, width }}>
