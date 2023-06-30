@@ -1,30 +1,111 @@
+"use client";
+import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 import { useTypewriter } from "react-simple-typewriter";
 import { TweetPreview } from "../generation/tweet-preview";
+import { DEMO_EXAMPLES, extractAI } from "@/lib/utils/demo_examples";
+import { Button } from "../ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import useMeasure from "react-use-measure";
+
+function usePrevious<T>(state: T) {
+  let [tuple, setTuple] = React.useState([null, state]);
+
+  if (tuple[1] !== state) {
+    setTuple([tuple[1], state]);
+  }
+
+  return tuple[0];
+}
+
+interface VariantProps {
+  direction: number;
+  width: number;
+}
+
+let variants = {
+  enter: ({ direction, width }: VariantProps) => ({
+    x: direction * width * 2,
+    opacity: 0,
+  }),
+  center: { x: 0, opacity: 100 },
+  exit: ({ direction, width }: VariantProps) => ({
+    x: direction * -width * 2,
+    opacity: 0,
+  }),
+};
 
 export const Demo = () => {
-  const [tweet] = useTypewriter({
-    words: [
-      `Back in the comfort of my home office, basking in the glorious morning light.
-      Working from home has its perks, and this is definitely one of them! 
-      #WorkFromHome #MorningLight`,
-    ],
+  const [index, setIndex] = React.useState<number>(0);
+  const prevIndex = usePrevious<number>(index);
+  let [ref, { width }] = useMeasure();
+  let direction = index > (prevIndex ?? 0) ? 1 : -1;
+
+  const example =
+    DEMO_EXAMPLES[(index + DEMO_EXAMPLES.length) % DEMO_EXAMPLES.length];
+
+  return (
+    <div
+      className="w-[32rem] h-[42rem] relative flex flex-col items-center mx-auto"
+      ref={ref}
+    >
+      <AnimatePresence custom={{ direction, width }}>
+        <motion.div
+          className="absolute top-0 left-0 w-full h-full"
+          key={index}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          custom={{ direction, width }}
+        >
+          <Button
+            className="absolute top-1/2 -left-10 transform -translate-y-1/2"
+            onClick={() => setIndex(index - 1)}
+            variant="ghost"
+            size="icon"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
+          <ShowCase example={example} />
+          <Button
+            className="absolute top-1/2 -right-10 transform -translate-y-1/2"
+            onClick={() => setIndex(index + 1)}
+            variant="ghost"
+            size="icon"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export const ShowCase = ({
+  example,
+}: {
+  example: { output: string; pic: string };
+}) => {
+  const [response] = useTypewriter({
+    words: [example.output],
     typeSpeed: 10,
     loop: 1,
   });
 
-  const [alt] = useTypewriter({
-    words: [
-      `A wooden desk topped with a sleek laptop computer, creating an inviting 
-      workspace. The morning light gently illuminates the room, enhancing 
-      the ambiance for a productive work-from-home day.`,
-    ],
-    typeSpeed: 10,
-    loop: 1,
-  });
+  const [tweet, setTweet] = React.useState("");
+  const [alt, setAlt] = React.useState("");
+
+  React.useEffect(() => {
+    const [t, a] = extractAI(response);
+    setTweet(t);
+    setAlt(a);
+  }, [response]);
 
   return (
     <TweetPreview
-      url="https://uploadthing.com/f/882ebe0c-913b-4b61-9c80-d6c03012ed3a_pexels-olena-bohovyk-3794382.jpg"
+      url={example.pic}
       tweet={tweet}
       alt={alt}
       aspect_ratio={0.75}

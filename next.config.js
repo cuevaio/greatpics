@@ -6,10 +6,9 @@ const nextConfig = {
       "uploadthing.com",
       "pbs.twimg.com",
       "api.dicebear.com",
+      "utfs.io",
     ],
     dangerouslyAllowSVG: true,
-    contentDispositionType: "attachment",
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 };
 

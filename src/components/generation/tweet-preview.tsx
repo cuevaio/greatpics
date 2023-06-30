@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { Dot } from "lucide-react";
 import { AspectRatio } from "../ui/aspect-ratio";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils/ui";
 import {
   Popover,
@@ -61,11 +61,8 @@ export const TweetPreview = ({
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.75 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      className="relative mx-auto max-w-xl flex gap-4 border rounded-lg p-4 pr-8"
+    <div
+      className="w-full gap-4 flex border rounded-lg p-4 pr-8"
     >
       <Image
         alt={alt}
@@ -102,26 +99,28 @@ export const TweetPreview = ({
             <Image alt={alt} src={url} fill className="object-cover" />
           </AspectRatio>
 
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button className="absolute bottom-2 left-2 h-min w-min py-1 px-2 font-bold tracking-wide bg-black/70 hover:bg-black/80">
-                ALT
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80 rounded-lg">
-              <div>
-                <div className="font-bold text-2xl">Image description</div>
-                <div className="my-2 text-sm">{alt}</div>
-                <PopoverClose asChild>
-                  <Button className="mt-2 w-full rounded-full font-bold text-lg">
-                    Dismiss
-                  </Button>
-                </PopoverClose>
-              </div>
-            </PopoverContent>
-          </Popover>
+          {!!alt && (
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button className="absolute bottom-2 left-2 h-min w-min py-1 px-2 font-bold tracking-wide bg-black/70 hover:bg-black/80">
+                  ALT
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80 rounded-lg">
+                <div>
+                  <div className="font-bold text-2xl">Image description</div>
+                  <div className="my-2 text-sm">{alt}</div>
+                  <PopoverClose asChild>
+                    <Button className="mt-2 w-full rounded-full font-bold text-lg">
+                      Dismiss
+                    </Button>
+                  </PopoverClose>
+                </div>
+              </PopoverContent>
+            </Popover>
+          )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
