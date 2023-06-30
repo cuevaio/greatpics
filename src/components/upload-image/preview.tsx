@@ -9,16 +9,10 @@ import { Button } from "../ui/button";
 interface Props {
   file: FileWithPath;
   setFile: React.Dispatch<React.SetStateAction<FileWithPath | null>>;
-  aspectRatio: number;
   setAspectRatio: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const ImagePreview = ({
-  file,
-  setFile,
-  aspectRatio,
-  setAspectRatio,
-}: Props) => {
+export const ImagePreview = ({ file, setFile, setAspectRatio }: Props) => {
   const localUrl = URL.createObjectURL(file);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
@@ -48,7 +42,7 @@ export const ImagePreview = ({
       <Image
         ref={imgRef}
         src={localUrl || ""}
-        alt="Photo by Drew Beamer"
+        alt=""
         fill
         className="object-cover"
       />

@@ -35,7 +35,7 @@ export const UploadImage = () => {
             Upload your pic
           </DialogTitle>
           <DialogDescription className="text-center">
-            It will take around 30 seconds to upload and caption your image.
+            It will take around 30 seconds to upload and caption your image. The max file size is 8MB.
           </DialogDescription>
         </DialogHeader>
         <div className="p-10 bg-secondary">

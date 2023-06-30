@@ -106,7 +106,6 @@ export const UploadImageDialogContent = () => {
               file={file}
               setFile={setFile}
               setAspectRatio={setAspectRatio}
-              aspectRatio={aspectRatio}
             />
           ) : (
             <Dropzone
