@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     if (!!process.env.VERCEL) {
       const client_id = await getClientID();
-      const identifier = `api/ai/alt:${client_id}`;
+      const identifier = `api/completion:${client_id}`;
       result = await aiRatelimit.limit(identifier);
 
       if (!result.success) {
@@ -39,7 +39,8 @@ export async function POST(request: Request) {
       }
     }
 
-    const { caption, draft } = await request.json();
+    const { draft, caption } = await request.json();
+
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -47,22 +48,26 @@ export async function POST(request: Request) {
         {
           role: "system",
           content:
-            "You are my AI content creation assistant that generates alt text for pictures. " +
-            "You will receive a basic caption for the picture and the draft written by me. " +
-            "Improve the caption by infering the context in the draft. " +
-            "Limit your response to no more than 280 characters, but make sure to construct complete sentences. ",
+            "USER will provide you with a draft and a caption of a picture made by an AI. " +
+            "Use the following step-by-step instructions to respond to user inputs.\n" +
+            '1. If an animal or person is present in the picture, use the draft to infer its name. Respond with a prefix that says "Entity: ".\n' +
+            '2. Convert the draft into a professional tweet keeping the style of USER. Respond with a prefix that says "Tweet: ".\n' +
+            '3. Use the caption and the context from past steps to generate a description for the picture in 1 or 2 sentences. Respond with a prefix that says "Description: ".\n' +
+            '4. Make the description optimized for screen readers in order to be accessible for blind people. It needs to be very descriptive and in third person. Respond with a prefix that says "Alt: ".',
         },
         {
           role: "user",
           content:
-            "Here is the caption: `" +
-            caption +
-            "`\n and here is the draft: `" +
+            'Draft: """' +
             draft +
-            "`",
+            '"""' +
+            "\n" +
+            '"""Caption: ' +
+            caption +
+            '"""',
         },
       ],
-      temperature: 0.7,
+      temperature: 0.75,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,

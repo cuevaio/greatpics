@@ -2,36 +2,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Picture } from "./picture";
 
-export const GenerationForm = ({
+export const CompletionForm = ({
   draft,
   setDraft,
+  complete,
   url,
   aspect_ratio,
-  completeAlt,
-  completeTweet,
-  stopAlt,
-  stopTweet,
-  isLoadingAlt,
-  isLoadingTweet,
+  stop,
+  isLoading,
 }: {
   url: string;
   aspect_ratio: number;
   draft: string;
   setDraft: (draft: string) => void;
-  completeAlt: (promp: string) => void;
-  completeTweet: (promp: string) => void;
-  stopAlt: () => void;
-  stopTweet: () => void;
-  isLoadingAlt: boolean;
-  isLoadingTweet: boolean;
+  complete: (promp: string) => void;
+  stop: () => void;
+  isLoading: boolean;
 }) => {
   return (
     <form
       className="w-full flex flex-col gap-4 mb-10"
       onSubmit={(event) => {
         event.preventDefault();
-        completeAlt("");
-        completeTweet("");
+        complete("");
       }}
     >
       <div className="relative w-full mx-auto flex items-center gap-x-4">
@@ -47,12 +40,11 @@ export const GenerationForm = ({
         />
       </div>
 
-      {isLoadingTweet || isLoadingAlt ? (
+      {isLoading ? (
         <Button
           variant="secondary"
           onClick={() => {
-            stopTweet();
-            stopAlt();
+            stop();
           }}
         >
           Stop

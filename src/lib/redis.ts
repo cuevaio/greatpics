@@ -17,4 +17,3 @@ export const aiRatelimit = new Ratelimit({
   limiter: Ratelimit.fixedWindow(10, "1 h"),
   analytics: true,
 });
-

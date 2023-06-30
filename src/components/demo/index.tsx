@@ -3,8 +3,8 @@ import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useTypewriter } from "react-simple-typewriter";
-import { TweetPreview } from "../generation/tweet-preview";
-import { DEMO_EXAMPLES, extractAI } from "@/lib/utils/demo_examples";
+import { TweetPreview } from "../completion/tweet-preview";
+import { DEMO_EXAMPLES } from "@/lib/utils/demo_examples";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useMeasure from "react-use-measure";
@@ -47,12 +47,12 @@ export const Demo = () => {
 
   return (
     <div
-      className="w-[32rem] h-[42rem] relative flex flex-col items-center mx-auto"
+      className="w-[32rem] min-h-[32rem] relative flex flex-col items-center mx-auto"
       ref={ref}
     >
       <AnimatePresence custom={{ direction, width }}>
         <motion.div
-          className="absolute top-0 left-0 w-full h-full"
+          className="absolute top-0 left-0 h-max w-full"
           key={index}
           variants={variants}
           initial="enter"
@@ -86,29 +86,19 @@ export const Demo = () => {
 export const ShowCase = ({
   example,
 }: {
-  example: { output: string; pic: string };
+  example: { output: string; pic: string; aspect_ratio: number };
 }) => {
-  const [response] = useTypewriter({
+  const [completion] = useTypewriter({
     words: [example.output],
     typeSpeed: 10,
     loop: 1,
   });
 
-  const [tweet, setTweet] = React.useState("");
-  const [alt, setAlt] = React.useState("");
-
-  React.useEffect(() => {
-    const [t, a] = extractAI(response);
-    setTweet(t);
-    setAlt(a);
-  }, [response]);
-
   return (
     <TweetPreview
       url={example.pic}
-      tweet={tweet}
-      alt={alt}
-      aspect_ratio={0.75}
+      completion={completion}
+      aspect_ratio={example.aspect_ratio}
     />
   );
 };

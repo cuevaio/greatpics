@@ -24,7 +24,9 @@ export default function RootLayout({
         <div className="-z-50 fixed h-[100dvh] w-full bg-gradient-to-br from-indigo-50 from-10% via-sky-50 via-30% to-emerald-50 to-90% " />
         <div id="content" className="w-full h-[100dvh] overflow-auto">
           <Navbar />
-          <main className="min-h-[80dvh] container mt-12 mb-20">{children}</main>
+          <main className="min-h-[80dvh] container mt-12 mb-20">
+            {children}
+          </main>
           <Footer />
         </div>
       </body>

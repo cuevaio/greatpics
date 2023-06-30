@@ -26,7 +26,13 @@ export const Picture = ({
         </AspectRatio>
       </DialogTrigger>
       <DialogContent className="p-0 w-full sm:w-max md:w-max sm:max-h-[800px] rounded-lg overflow-hidden border">
-        <Image src={url} alt="" height={1000} width={1000} className="h-full w-auto" />
+        <Image
+          src={url}
+          alt=""
+          height={1000}
+          width={1000}
+          className="h-full w-auto"
+        />
       </DialogContent>
     </Dialog>
   );

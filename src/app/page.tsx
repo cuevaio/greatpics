@@ -43,8 +43,7 @@ const Home = () => {
           >
             <Balancer ratio={0.6}>
               Not sure about what to tweet with those pictures? Let AI come to
-              the rescue! Create powerful tweets with accessible images in
-              seconds.
+              the rescue! Create powerful tweets optimized for a11y in seconds.
             </Balancer>
           </motion.p>
         </div>

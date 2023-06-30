@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import Image from "next/image";
 import { Dot } from "lucide-react";
 import { AspectRatio } from "../ui/aspect-ratio";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils/ui";
 import {
   Popover,
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/popover";
 
 import { PopoverClose } from "@radix-ui/react-popover";
+import { extractAI } from "@/lib/utils/demo_examples";
 
 interface User {
   name: string;
@@ -32,14 +33,13 @@ const fetchUser = async () => {
 export const TweetPreview = ({
   url,
   aspect_ratio,
-  alt,
-  tweet,
+  completion,
 }: {
   url: string;
   aspect_ratio: number;
-  alt: string;
-  tweet: string;
+  completion: string;
 }) => {
+  const [tweet, alt] = extractAI(completion);
   const [user, setUser] = React.useState<User | null>(null);
   const profile_pic = React.useMemo(() => {
     const options = [
@@ -61,9 +61,7 @@ export const TweetPreview = ({
   }, []);
 
   return (
-    <div
-      className="w-full gap-4 flex border rounded-lg p-4 pr-8"
-    >
+    <div className="w-full gap-4 flex border rounded-lg p-4 pr-8">
       <Image
         alt={alt}
         src={profile_pic}
@@ -102,9 +100,16 @@ export const TweetPreview = ({
           {!!alt && (
             <Popover>
               <PopoverTrigger asChild>
-                <Button className="absolute bottom-2 left-2 h-min w-min py-1 px-2 font-bold tracking-wide bg-black/70 hover:bg-black/80">
+                <motion.button
+                  initial={{ opacity: 0, scale: 2 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "rounded-lg absolute bottom-2 left-2 h-min w-min py-1 px-2 font-bold tracking-wide bg-black/70 hover:bg-black/80"
+                  )}
+                >
                   ALT
-                </Button>
+                </motion.button>
               </PopoverTrigger>
               <PopoverContent className="w-80 rounded-lg">
                 <div>

@@ -1,4 +1,4 @@
-import { Generation } from "@/components/generation";
+import { Completion } from "@/components/completion";
 import { getXataClient } from "@/lib/xata";
 
 const getPic = async (id: string) => {
@@ -26,7 +26,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
       <h1 className="bg-gradient-to-br from-slate-400 via-black to-slate-400 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-5xl md:leading-[5rem]">
         Your tweet
       </h1>
-      <Generation
+      <Completion
         url={pic?.url || ""}
         caption={pic?.caption || ""}
         aspect_ratio={pic.aspect_ratio || 1 / 1}
