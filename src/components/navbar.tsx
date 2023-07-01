@@ -11,7 +11,7 @@ export const Navbar = () => {
     <div
       className={cn(
         "sticky top-0 w-full",
-        { "border-b border-slate-200 bg-white/50 backdrop-blur-xl": scrolled },
+        { "border-b bg-background/50 backdrop-blur-xl": scrolled },
         { "bg-white/0": !scrolled },
         "z-50 transition-all"
       )}

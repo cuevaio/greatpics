@@ -26,12 +26,12 @@ interface VariantProps {
 
 let variants = {
   enter: ({ direction, width }: VariantProps) => ({
-    x: direction * width * 2,
+    x: direction * width,
     opacity: 0,
   }),
   center: { x: 0, opacity: 100 },
   exit: ({ direction, width }: VariantProps) => ({
-    x: direction * -width * 2,
+    x: direction * -width,
     opacity: 0,
   }),
 };

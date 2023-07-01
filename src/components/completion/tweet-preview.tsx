@@ -86,7 +86,7 @@ export const TweetPreview = ({
             <div className="w-[10%] h-4 bg-border animate-pulse rounded-full" />
           </div>
         )}
-        <div className="mb-3">{tweet}</div>
+        <p className="mb-3">{tweet}</p>
 
         <div
           className={cn("rounded-xl border overflow-hidden relative", {
@@ -111,8 +111,7 @@ export const TweetPreview = ({
                   ALT
                 </motion.button>
               </PopoverTrigger>
-              <PopoverContent className="w-80 rounded-lg">
-                <div>
+              <PopoverContent className="w-80 rounded-lg text-foreground">
                   <div className="font-bold text-2xl">Image description</div>
                   <div className="my-2 text-sm">{alt}</div>
                   <PopoverClose asChild>
@@ -120,7 +119,6 @@ export const TweetPreview = ({
                       Dismiss
                     </Button>
                   </PopoverClose>
-                </div>
               </PopoverContent>
             </Popover>
           )}

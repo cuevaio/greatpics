@@ -23,7 +23,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="">
-      <h1 className="bg-gradient-to-br from-slate-400 via-black to-slate-400 bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-5xl md:leading-[5rem]">
+      <h1 className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50  bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-5xl md:leading-[5rem]">
         Your tweet
       </h1>
       <Completion

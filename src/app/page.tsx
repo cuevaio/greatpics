@@ -14,7 +14,8 @@ import {
 
 const Home = () => {
   return (
-    <>
+    <div className="relative">
+      <div className="background-gradient w-[80%] aspect-square absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 -z-40"></div>
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -29,20 +30,29 @@ const Home = () => {
           },
         }}
       >
+        <div className="absolute top-0 bottom-0 right-0 left-0 -z-40" />
         <div className="max-w-[60rem] mx-auto">
           <motion.h1
-            className="bg-gradient-to-br from-slate-400 via-black to-slate-400 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            className="text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
             variants={{
               hidden: { opacity: 0, y: -10 },
               show: { opacity: 1, y: 0, transition: { type: "spring" } },
             }}
           >
             <Balancer>
-              Captivating and accessible tweets from your pics
+              <span className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50 bg-clip-text">
+                Captivating and accessible
+              </span>{" "}
+              <span className="bg-gradient-to-br from-primary/50 via-primary to-primary/50  bg-clip-text">
+                tweets
+              </span>{" "}
+              <span className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50 bg-clip-text">
+                from your pics
+              </span>
             </Balancer>
           </motion.h1>
           <motion.p
-            className="mt-6 text-center text-gray-500 md:text-xl"
+            className="mt-6 text-center md:text-xl"
             variants={{
               hidden: { opacity: 0, y: -10 },
               show: { opacity: 1, y: 0, transition: { type: "spring" } },
@@ -69,7 +79,7 @@ const Home = () => {
       </motion.div>
 
       <Demo />
-    </>
+    </div>
   );
 };
 
