@@ -15,7 +15,7 @@ import {
 const Home = () => {
   return (
     <div className="relative">
-      <div className="background-gradient w-[80%] aspect-square absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 -z-40"></div>
+      <div className="background-gradient w-[80%] aspect-square absolute -top-10 sm:-top-32 md:-top-48 left-1/2 transform -translate-x-1/2 -z-40" />
       <motion.div
         initial="hidden"
         whileInView="show"
