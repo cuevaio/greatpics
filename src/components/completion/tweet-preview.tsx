@@ -112,13 +112,13 @@ export const TweetPreview = ({
                 </motion.button>
               </PopoverTrigger>
               <PopoverContent className="w-80 rounded-lg text-foreground">
-                  <div className="font-bold text-2xl">Image description</div>
-                  <div className="my-2 text-sm">{alt}</div>
-                  <PopoverClose asChild>
-                    <Button className="mt-2 w-full rounded-full font-bold text-lg">
-                      Dismiss
-                    </Button>
-                  </PopoverClose>
+                <div className="font-bold text-2xl">Image description</div>
+                <div className="my-2 text-sm">{alt}</div>
+                <PopoverClose asChild>
+                  <Button className="mt-2 w-full rounded-full font-bold text-lg">
+                    Dismiss
+                  </Button>
+                </PopoverClose>
               </PopoverContent>
             </Popover>
           )}

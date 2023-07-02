@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
     console.log("Deleted pic", { id, url });
 
-    return NextResponse.next();
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
