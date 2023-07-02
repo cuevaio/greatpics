@@ -40,13 +40,34 @@ const Home = () => {
             }}
           >
             <Balancer>
-              <span className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50 bg-clip-text">
+              <span
+                className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50 bg-clip-text"
+                style={{
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
                 Captivating and accessible
               </span>{" "}
-              <span className="bg-gradient-to-br from-primary/50 via-primary to-primary/50  bg-clip-text">
+              <span
+                className="bg-gradient-to-br from-primary/50 via-primary to-primary/50  bg-clip-text"
+                style={{
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
                 tweets
               </span>{" "}
-              <span className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50 bg-clip-text">
+              <span
+                className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50 bg-clip-text"
+                style={{
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
                 from your pics
               </span>
             </Balancer>
