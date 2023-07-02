@@ -18,7 +18,7 @@ export const Completion = ({
   const [draft, setDraft] = React.useState("");
   const { toast } = useToast();
 
-  const { completion, complete, stop, isLoading } = useCompletion({
+  const { complete, stop, isLoading, completion } = useCompletion({
     body: { caption, draft },
     onResponse: (res) => {
       if (res.status === 429) {

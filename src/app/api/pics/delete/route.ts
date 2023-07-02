@@ -20,8 +20,6 @@ export async function POST(request: Request) {
 
     await getXataClient().db.pic.delete(id);
 
-    console.log("Deleted pic", { id, url });
-
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error(error);

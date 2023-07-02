@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { type StaticImageData } from "next/image";
 import { useTypewriter } from "react-simple-typewriter";
 import { TweetPreview } from "../completion/tweet-preview";
 import { DEMO_EXAMPLES } from "@/lib/utils/demo_examples";
@@ -86,7 +86,11 @@ export const Demo = () => {
 export const ShowCase = ({
   example,
 }: {
-  example: { output: string; pic: string; aspect_ratio: number };
+  example: {
+    output: string;
+    pic: string | StaticImageData;
+    aspect_ratio: number;
+  };
 }) => {
   const [completion] = useTypewriter({
     words: [example.output],

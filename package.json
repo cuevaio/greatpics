@@ -26,7 +26,7 @@
     "@upstash/ratelimit": "^0.4.3",
     "@upstash/redis": "^1.22.0",
     "@xata.io/client": "^0.24.3",
-    "ai": "^2.1.13",
+    "ai": "2.1.12",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.0",
     "class-variance-authority": "^0.6.1",

@@ -1,5 +1,7 @@
 "use client";
 
+import { type StaticImageData } from "next/image";
+
 import * as React from "react";
 import { Button, buttonVariants } from "../ui/button";
 import Image from "next/image";
@@ -35,7 +37,7 @@ export const TweetPreview = ({
   aspect_ratio,
   completion,
 }: {
-  url: string;
+  url: string | StaticImageData;
   aspect_ratio: number;
   completion: string;
 }) => {
@@ -94,7 +96,13 @@ export const TweetPreview = ({
           })}
         >
           <AspectRatio ratio={aspect_ratio} className="">
-            <Image alt={alt} src={url} fill className="object-cover" />
+            <Image
+              placeholder={typeof url === "string" ? undefined : "blur"}
+              alt={alt}
+              src={url}
+              fill
+              className="object-cover"
+            />
           </AspectRatio>
 
           {!!alt && (

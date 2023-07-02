@@ -72,7 +72,7 @@ export async function POST(request: Request) {
         headers: {
           Authorization: "Bearer " + String(process.env.UPSTASH_QSTASH_TOKEN),
           "Content-type": "application/json",
-          "Upstash-Delay": "1m",
+          "Upstash-Delay": "1d",
           "Upstash-Deduplication-Id": `delete_${pic.id}`,
         },
         body: JSON.stringify({ id: pic.id, url }),
