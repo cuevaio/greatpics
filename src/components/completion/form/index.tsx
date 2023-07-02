@@ -22,17 +22,17 @@ export const CompletionForm = ({
 }) => {
   return (
     <form
-      className="w-full flex flex-col gap-4 mb-10"
+      className="mb-10 flex w-full flex-col gap-4"
       onSubmit={(event) => {
         event.preventDefault()
         complete("")
       }}
     >
-      <div className="relative w-full mx-auto flex items-center gap-x-4">
+      <div className="relative mx-auto flex w-full items-center gap-x-4">
         <Picture url={url} aspect_ratio={aspect_ratio} />
 
         <Textarea
-          className="resize-none absolute top-0 bottom-0 left-36 right-0 w-auto min-h-[auto] rounded-lg"
+          className="absolute inset-y-0 left-36 right-0 min-h-[auto] w-auto resize-none rounded-lg"
           value={draft}
           placeholder="A draft of your tweet..."
           onChange={(e) => {

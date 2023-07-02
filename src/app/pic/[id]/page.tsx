@@ -15,7 +15,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   if (!pic) {
     return (
       <div className="text-center">
-        <h1 className="font-black text-4xl">404</h1>
+        <h1 className="text-4xl font-black">404</h1>
         <p className="">Pic not found</p>
       </div>
     )
@@ -23,7 +23,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="">
-      <h1 className="bg-gradient-to-br from-primary-foreground/50 via-primary-foreground to-primary-foreground/50  bg-clip-text text-center font-display text-3xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-5xl md:leading-[5rem]">
+      <h1 className="font-display bg-gradient-to-br from-primary-foreground/50 via-primary-foreground  to-primary-foreground/50 bg-clip-text text-center text-3xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-5xl md:leading-[5rem]">
         Your tweet
       </h1>
       <Completion

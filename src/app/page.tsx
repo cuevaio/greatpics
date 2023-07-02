@@ -15,7 +15,7 @@ import { UploadImage } from "@/components/upload-image"
 const Home = () => {
   return (
     <div className="relative">
-      <div className="background-gradient w-[80%] aspect-square absolute -top-10 sm:-top-32 md:-top-48 left-1/2 transform -translate-x-1/2 -z-40" />
+      <div className="background-gradient absolute -top-10 left-1/2 -z-40 aspect-square w-[80%] -translate-x-1/2 sm:-top-32 md:-top-48" />
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -30,10 +30,10 @@ const Home = () => {
           },
         }}
       >
-        <div className="absolute top-0 bottom-0 right-0 left-0 -z-40" />
-        <div className="max-w-[60rem] mx-auto">
+        <div className="absolute inset-0 -z-40" />
+        <div className="mx-auto max-w-[60rem]">
           <motion.h1
-            className="text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            className="font-display text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
             variants={{
               hidden: { opacity: 0, y: -10 },
               show: { opacity: 1, y: 0, transition: { type: "spring" } },
@@ -63,7 +63,7 @@ const Home = () => {
               the rescue! Create powerful tweets optimized for{" "}
               <TooltipProvider>
                 <Tooltip>
-                  <TooltipTrigger className="decoration-dotted underline">
+                  <TooltipTrigger className="underline decoration-dotted">
                     a11y
                   </TooltipTrigger>
                   <TooltipContent>

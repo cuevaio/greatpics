@@ -50,12 +50,12 @@ export const Demo = () => {
 
   return (
     <div
-      className="w-[90%] sm:w-[32rem] min-h-[32rem] relative flex flex-col items-center mx-auto"
+      className="relative mx-auto flex min-h-[32rem] w-[90%] flex-col items-center sm:w-[32rem]"
       ref={ref}
     >
       <AnimatePresence custom={{ direction, width }}>
         <motion.div
-          className="absolute top-0 left-0 h-max w-full"
+          className="absolute left-0 top-0 h-max w-full"
           key={index}
           variants={variants}
           initial="enter"
@@ -64,21 +64,21 @@ export const Demo = () => {
           custom={{ direction, width }}
         >
           <Button
-            className="absolute top-1/2 -left-10 transform -translate-y-1/2"
+            className="absolute -left-10 top-1/2 -translate-y-1/2"
             onClick={() => setIndex(index - 1)}
             variant="ghost"
             size="icon"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="h-4 w-4" />
           </Button>
           <ShowCase example={example} />
           <Button
-            className="absolute top-1/2 -right-10 transform -translate-y-1/2"
+            className="absolute -right-10 top-1/2 -translate-y-1/2"
             onClick={() => setIndex(index + 1)}
             variant="ghost"
             size="icon"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="h-4 w-4" />
           </Button>
         </motion.div>
       </AnimatePresence>

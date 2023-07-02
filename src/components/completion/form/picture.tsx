@@ -14,13 +14,13 @@ export const Picture = ({
     <Dialog>
       <DialogTrigger
         type="button"
-        className="w-32 grow-0 shrink-0 overflow-hidden border border-input rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="w-32 shrink-0 grow-0 overflow-hidden rounded-lg border border-input transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         <AspectRatio ratio={aspect_ratio || 1 / 1}>
           <Image src={url} alt="" fill className="object-cover" />
         </AspectRatio>
       </DialogTrigger>
-      <DialogContent className="p-0 w-full sm:w-max md:w-max sm:max-h-[800px] rounded-lg overflow-hidden border">
+      <DialogContent className="w-full overflow-hidden rounded-lg border p-0 sm:max-h-[800px] sm:w-max md:w-max">
         <Image
           src={url}
           alt=""

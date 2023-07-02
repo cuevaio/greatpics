@@ -102,8 +102,8 @@ export const UploadImageDialogContent = () => {
   })
 
   return (
-    <div className="w-full flex flex-col gap-y-2">
-      <div className="relative overflow-hidden border rounded-lg">
+    <div className="flex w-full flex-col gap-y-2">
+      <div className="relative overflow-hidden rounded-lg border">
         <AspectRatio ratio={aspectRatio}>
           {file ? (
             <ImagePreview

@@ -17,8 +17,8 @@ export const Navbar = () => {
         "z-50 transition-all"
       )}
     >
-      <div className="flex h-16 container items-center justify-between">
-        <Link href="/" className="flex items-center font-bold text-2xl">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center text-2xl font-bold">
           <span className="-mt-1.5 mr-1">🤖</span>
           <span>Great Pics</span>
         </Link>

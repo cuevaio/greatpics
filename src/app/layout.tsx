@@ -30,10 +30,10 @@ export default function RootLayout({
     >
       <body className={cn(unbounded.className)}>
         <Toaster />
-        <div className="-z-50 fixed h-[100dvh] w-full" />
-        <div id="content" className="w-full h-[100dvh] overflow-auto">
+        <div className="fixed -z-50 h-[100dvh] w-full" />
+        <div id="content" className="h-[100dvh] w-full overflow-auto">
           <Navbar />
-          <main className="min-h-[80dvh] container mt-12 mb-20">
+          <main className="container mb-20 mt-12 min-h-[80dvh]">
             {children}
           </main>
           <Footer />

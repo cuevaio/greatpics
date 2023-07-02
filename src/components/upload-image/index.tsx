@@ -21,19 +21,19 @@ export const UploadImage = () => {
         <motion.button
           className={cn(
             buttonVariants({ variant: "default" }),
-            "flex mx-auto my-8 rounded-lg"
+            "mx-auto my-8 flex rounded-lg"
           )}
           variants={{
             hidden: { opacity: 0, y: -10 },
             show: { opacity: 1, y: 0, transition: { type: "spring" } },
           }}
         >
-          <UploadCloud className="w-4 h-4 mr-2" /> Upload photo
+          <UploadCloud className="mr-2 h-4 w-4" /> Upload photo
         </motion.button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] p-0 gap-0 divide-y rounded-lg">
+      <DialogContent className="gap-0 divide-y rounded-lg p-0 sm:max-w-[425px]">
         <DialogHeader className="p-8">
-          <DialogTitle className="font-bold text-xl text-center">
+          <DialogTitle className="text-center text-xl font-bold">
             Upload your pic
           </DialogTitle>
           <DialogDescription className="text-center">
@@ -41,7 +41,7 @@ export const UploadImage = () => {
             max file size is 8MB.
           </DialogDescription>
         </DialogHeader>
-        <div className="p-10 bg-secondary">
+        <div className="bg-secondary p-10">
           <UploadImageDialogContent />
         </div>
       </DialogContent>

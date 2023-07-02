@@ -56,9 +56,9 @@ export const ImagePreview = ({ file, setFile, setAspectRatio }: Props) => {
           variant="secondary"
           size="icon"
           type="submit"
-          className="m-2 bg-white/50 hover:bg-white/75 w-6 h-6  absolute top-0 right-0"
+          className="absolute right-0 top-0 m-2 h-6  w-6 bg-white/50 hover:bg-white/75"
         >
-          <X className="w-3 h-3 text-slate-600" />
+          <X className="h-3 w-3 text-slate-600" />
         </Button>
       </form>
     </>

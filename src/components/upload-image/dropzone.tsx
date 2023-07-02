@@ -11,15 +11,15 @@ export const Dropzone = ({ getRootProps, getInputProps }: Props) => {
   return (
     <div
       {...getRootProps()}
-      className="ring-ring outline-ring bg-white rounded h-full hover:cursor-pointer group flex flex-col justify-center items-center"
+      className="group flex h-full flex-col items-center justify-center rounded bg-white outline-ring ring-ring hover:cursor-pointer"
     >
-      <UploadCloud className="mb-4 w-6 h-6 transition group-hover:scale-110 group-hover:-translate-y-1" />
+      <UploadCloud className="mb-4 h-6 w-6 transition group-hover:-translate-y-1 group-hover:scale-110" />
       <p className="text-center text-sm">Drag and drop</p>
       <p className="text-center text-sm">or</p>
       <p className="text-center text-sm">click and select</p>
 
       <input
-        className="ring-transparent outline-transparent"
+        className="outline-transparent ring-transparent"
         {...getInputProps()}
       />
     </div>

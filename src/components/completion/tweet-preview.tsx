@@ -62,35 +62,35 @@ export const TweetPreview = ({
   }, [])
 
   return (
-    <div className="w-full gap-4 flex border rounded-lg p-4 pr-8">
+    <div className="flex w-full gap-4 rounded-lg border p-4 pr-8">
       <Image
         alt={alt}
         src={profile_pic}
         width={40}
         height={40}
-        className="w-12 h-12 rounded-full bg-border"
+        className="h-12 w-12 rounded-full bg-border"
       />
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         {user ? (
           <div className="flex flex-wrap gap-x-1">
             <div className="font-bold">{user?.name}</div>
             <div className="text-muted-foreground">@{user?.username}</div>
             <div className="flex items-center justify-center">
-              <Dot className="w-2 h-2" />
+              <Dot className="h-2 w-2" />
             </div>
             <div className="text-muted-foreground">1h</div>
           </div>
         ) : (
-          <div className="flex gap-1 w-[80%] mb-2">
-            <div className="w-[50%] h-4 bg-border animate-pulse rounded-full" />
-            <div className="w-[40%] h-4 bg-border animate-pulse rounded-full" />
-            <div className="w-[10%] h-4 bg-border animate-pulse rounded-full" />
+          <div className="mb-2 flex w-[80%] gap-1">
+            <div className="h-4 w-[50%] animate-pulse rounded-full bg-border" />
+            <div className="h-4 w-[40%] animate-pulse rounded-full bg-border" />
+            <div className="h-4 w-[10%] animate-pulse rounded-full bg-border" />
           </div>
         )}
         <p className="mb-3">{tweet}</p>
 
         <div
-          className={cn("rounded-xl border overflow-hidden relative", {
+          className={cn("relative overflow-hidden rounded-xl border", {
             "max-w-sm": aspect_ratio === 4 / 5 || aspect_ratio === 3 / 4,
           })}
         >
@@ -112,17 +112,17 @@ export const TweetPreview = ({
                   animate={{ opacity: 1, scale: 1 }}
                   className={cn(
                     buttonVariants({ variant: "default" }),
-                    "rounded-lg absolute bottom-2 left-2 h-min w-min py-1 px-2 font-bold tracking-wide bg-black/70 hover:bg-black/80"
+                    "absolute bottom-2 left-2 h-min w-min rounded-lg bg-black/70 px-2 py-1 font-bold tracking-wide hover:bg-black/80"
                   )}
                 >
                   ALT
                 </motion.button>
               </PopoverTrigger>
               <PopoverContent className="w-80 rounded-lg text-foreground">
-                <div className="font-bold text-2xl">Image description</div>
+                <div className="text-2xl font-bold">Image description</div>
                 <div className="my-2 text-sm">{alt}</div>
                 <PopoverClose asChild>
-                  <Button className="mt-2 w-full rounded-full font-bold text-lg">
+                  <Button className="mt-2 w-full rounded-full text-lg font-bold">
                     Dismiss
                   </Button>
                 </PopoverClose>

@@ -4,8 +4,8 @@ import Link from "next/link"
 
 export const Footer = () => {
   return (
-    <div className="sticky bottom-0 w-full border-t z-50 bg-background">
-      <div className="flex h-16 container items-center justify-between text-muted-foreground">
+    <div className="sticky bottom-0 z-50 w-full border-t bg-background">
+      <div className="container flex h-16 items-center justify-between text-muted-foreground">
         <p className="text-muted-foreground">
           Powered by{" "}
           <Link
