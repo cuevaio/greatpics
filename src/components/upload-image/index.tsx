@@ -1,4 +1,8 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import { UploadCloud } from "lucide-react"
+
+import { cn } from "@/lib/utils/ui"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -6,11 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { UploadImageDialogContent } from "./dialog-content";
-import { UploadCloud } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils/ui";
+} from "@/components/ui/dialog"
+
+import { UploadImageDialogContent } from "./dialog-content"
 
 export const UploadImage = () => {
   return (
@@ -44,5 +46,5 @@ export const UploadImage = () => {
         </div>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

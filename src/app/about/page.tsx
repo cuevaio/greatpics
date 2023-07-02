@@ -65,7 +65,7 @@ const AboutPage = () => {
         </li>
       </ul>
     </>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage

@@ -1,27 +1,30 @@
-"use client";
-import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { type StaticImageData } from "next/image";
-import { useTypewriter } from "react-simple-typewriter";
-import { TweetPreview } from "../completion/tweet-preview";
-import { DEMO_EXAMPLES } from "@/lib/utils/demo_examples";
-import { Button } from "../ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import useMeasure from "react-use-measure";
+"use client"
+
+import * as React from "react"
+import { type StaticImageData } from "next/image"
+import { AnimatePresence, motion } from "framer-motion"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useTypewriter } from "react-simple-typewriter"
+import useMeasure from "react-use-measure"
+
+import { DEMO_EXAMPLES } from "@/lib/utils/demo_examples"
+
+import { TweetPreview } from "../completion/tweet-preview"
+import { Button } from "../ui/button"
 
 function usePrevious<T>(state: T) {
-  let [tuple, setTuple] = React.useState([null, state]);
+  let [tuple, setTuple] = React.useState([null, state])
 
   if (tuple[1] !== state) {
-    setTuple([tuple[1], state]);
+    setTuple([tuple[1], state])
   }
 
-  return tuple[0];
+  return tuple[0]
 }
 
 interface VariantProps {
-  direction: number;
-  width: number;
+  direction: number
+  width: number
 }
 
 let variants = {
@@ -34,16 +37,16 @@ let variants = {
     x: direction * -width,
     opacity: 0,
   }),
-};
+}
 
 export const Demo = () => {
-  const [index, setIndex] = React.useState<number>(0);
-  const prevIndex = usePrevious<number>(index);
-  let [ref, { width }] = useMeasure();
-  let direction = index > (prevIndex ?? 0) ? 1 : -1;
+  const [index, setIndex] = React.useState<number>(0)
+  const prevIndex = usePrevious<number>(index)
+  let [ref, { width }] = useMeasure()
+  let direction = index > (prevIndex ?? 0) ? 1 : -1
 
   const example =
-    DEMO_EXAMPLES[(index + DEMO_EXAMPLES.length) % DEMO_EXAMPLES.length];
+    DEMO_EXAMPLES[(index + DEMO_EXAMPLES.length) % DEMO_EXAMPLES.length]
 
   return (
     <div
@@ -80,23 +83,23 @@ export const Demo = () => {
         </motion.div>
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
 export const ShowCase = ({
   example,
 }: {
   example: {
-    output: string;
-    pic: string | StaticImageData;
-    aspect_ratio: number;
-  };
+    output: string
+    pic: string | StaticImageData
+    aspect_ratio: number
+  }
 }) => {
   const [completion] = useTypewriter({
     words: [example.output],
     typeSpeed: 10,
     loop: 1,
-  });
+  })
 
   return (
     <TweetPreview
@@ -104,5 +107,5 @@ export const ShowCase = ({
       completion={completion}
       aspect_ratio={example.aspect_ratio}
     />
-  );
-};
+  )
+}

@@ -1,22 +1,26 @@
-"use client";
-import * as React from "react";
-import { useCompletion } from "ai/react";
-import { ToastAction } from "@/components/ui/toast";
-import { motion } from "framer-motion";
-import { TweetPreview } from "./tweet-preview";
-import { CompletionForm } from "./form";
-import { useToast } from "../ui/use-toast";
+"use client"
+
+import * as React from "react"
+import { useCompletion } from "ai/react"
+import { motion } from "framer-motion"
+
+import { ToastAction } from "@/components/ui/toast"
+
+import { useToast } from "../ui/use-toast"
+import { CompletionForm } from "./form"
+import { TweetPreview } from "./tweet-preview"
+
 export const Completion = ({
   caption,
   url,
   aspect_ratio,
 }: {
-  caption: string;
-  url: string;
-  aspect_ratio: number;
+  caption: string
+  url: string
+  aspect_ratio: number
 }) => {
-  const [draft, setDraft] = React.useState("");
-  const { toast } = useToast();
+  const [draft, setDraft] = React.useState("")
+  const { toast } = useToast()
 
   const { complete, stop, isLoading, completion } = useCompletion({
     body: { caption, draft },
@@ -27,7 +31,7 @@ export const Completion = ({
           title: "Oops! Too many requests for now :(",
           description:
             "You are being rate limited. You can generate 10 alt texts per hour. Please try again later.",
-        });
+        })
       } else if (res.status === 500) {
         toast({
           variant: "destructive",
@@ -35,10 +39,10 @@ export const Completion = ({
           description:
             "You are being rate limited. You can generate 10 tweets texts per hour. Please try again later.",
           action: <ToastAction altText="Try again">Try again</ToastAction>,
-        });
+        })
       }
     },
-  });
+  })
 
   return (
     <>
@@ -73,5 +77,5 @@ export const Completion = ({
         )}
       </div>
     </>
-  );
-};
+  )
+}

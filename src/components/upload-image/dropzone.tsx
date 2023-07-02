@@ -1,9 +1,10 @@
-"use client";
-import { UploadCloud } from "lucide-react";
+"use client"
+
+import { UploadCloud } from "lucide-react"
 
 interface Props {
-  getRootProps: any;
-  getInputProps: any;
+  getRootProps: any
+  getInputProps: any
 }
 
 export const Dropzone = ({ getRootProps, getInputProps }: Props) => {
@@ -22,5 +23,5 @@ export const Dropzone = ({ getRootProps, getInputProps }: Props) => {
         {...getInputProps()}
       />
     </div>
-  );
-};
+  )
+}

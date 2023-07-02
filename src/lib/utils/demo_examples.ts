@@ -1,7 +1,7 @@
-import dog from "~/pics/dog.jpg";
-import cat from "~/pics/cat.jpg";
-import elon from "~/pics/elon.jpg";
-import house from "~/pics/house.jpg";
+import cat from "~/pics/cat.jpg"
+import dog from "~/pics/dog.jpg"
+import elon from "~/pics/elon.jpg"
+import house from "~/pics/house.jpg"
 
 export const DEMO_EXAMPLES = [
   {
@@ -46,34 +46,34 @@ export const DEMO_EXAMPLES = [
     Description: A beautiful house stands tall, surrounded by lush green grass, creating a serene and welcoming atmosphere.
     Alt: A large house with a well-maintained lawn in front, creating a peaceful and inviting ambiance.`,
   },
-];
+]
 
 export function extractAI(response: string) {
-  let tweet = "";
-  let alt = "";
+  let tweet = ""
+  let alt = ""
 
-  let temp = (response + "Description:").split("Tweet:")[1] ?? "";
-  temp = temp.split("Description:")[0] ?? "";
-  tweet = temp.trim();
+  let temp = (response + "Description:").split("Tweet:")[1] ?? ""
+  temp = temp.split("Description:")[0] ?? ""
+  tweet = temp.trim()
 
   // remove "" from start and end if present
   if (tweet[0] === '"') {
-    tweet = tweet.slice(1);
+    tweet = tweet.slice(1)
   }
   if (tweet[tweet.length - 1] === '"') {
-    tweet = tweet.slice(0, tweet.length - 1);
+    tweet = tweet.slice(0, tweet.length - 1)
   }
 
-  temp = response.split("Alt:")[1] ?? "";
-  alt = temp.trim();
+  temp = response.split("Alt:")[1] ?? ""
+  alt = temp.trim()
 
   // remove "" from start and end if present
   if (alt[0] === '"') {
-    alt = alt.slice(1);
+    alt = alt.slice(1)
   }
   if (alt[alt.length - 1] === '"') {
-    alt = alt.slice(0, alt.length - 1);
+    alt = alt.slice(0, alt.length - 1)
   }
 
-  return [tweet, alt];
+  return [tweet, alt]
 }

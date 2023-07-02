@@ -1,31 +1,32 @@
-import { Configuration, OpenAIApi } from "openai-edge";
-import { OpenAIStream, StreamingTextResponse } from "ai";
-import { aiRatelimit } from "@/lib/upstash";
-import { getClientID } from "@/lib/utils/get-client-id";
+import { OpenAIStream, StreamingTextResponse } from "ai"
+import { Configuration, OpenAIApi } from "openai-edge"
+
+import { aiRatelimit } from "@/lib/upstash"
+import { getClientID } from "@/lib/utils/get-client-id"
 
 // Create an OpenAI API client (that's edge friendly!)
 const config = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
-});
+})
 
-const openai = new OpenAIApi(config);
+const openai = new OpenAIApi(config)
 
 // IMPORTANT! Set the runtime to edge
-export const runtime = "edge";
+export const runtime = "edge"
 
 export async function POST(request: Request) {
   try {
     let result: {
-      success: boolean;
-      limit: number;
-      remaining: number;
-      reset: number;
-    } | null = null;
+      success: boolean
+      limit: number
+      remaining: number
+      reset: number
+    } | null = null
 
     if (!!process.env.VERCEL) {
-      const client_id = await getClientID();
-      const identifier = `api/completion:${client_id}`;
-      result = await aiRatelimit.limit(identifier);
+      const client_id = await getClientID()
+      const identifier = `api/completion:${client_id}`
+      result = await aiRatelimit.limit(identifier)
 
       if (!result.success) {
         return new Response("Exceeded maximum api calls quote", {
@@ -35,11 +36,11 @@ export async function POST(request: Request) {
             "X-RateLimit-Remaining": String(result.remaining),
             "X-RateLimit-Reset": String(result.reset),
           },
-        });
+        })
       }
     }
 
-    const { draft, caption } = await request.json();
+    const { draft, caption } = await request.json()
 
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.createChatCompletion({
@@ -73,10 +74,10 @@ export async function POST(request: Request) {
       presence_penalty: 0,
       stream: true,
       n: 1,
-    });
+    })
 
     // Convert the response into a friendly text-stream
-    const stream = OpenAIStream(response);
+    const stream = OpenAIStream(response)
     // Respond with the stream
     return new StreamingTextResponse(stream, {
       headers: result
@@ -86,9 +87,9 @@ export async function POST(request: Request) {
             "X-RateLimit-Reset": String(result.reset),
           }
         : {},
-    });
+    })
   } catch (error) {
-    console.error(error);
-    return new Response("Internal Server Error", { status: 500 });
+    console.error(error)
+    return new Response("Internal Server Error", { status: 500 })
   }
 }

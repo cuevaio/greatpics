@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { UploadImage } from "@/components/upload-image";
-import Balancer from "react-wrap-balancer";
-import { motion } from "framer-motion";
-import { Demo } from "@/components/demo";
+import { motion } from "framer-motion"
+import Balancer from "react-wrap-balancer"
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/tooltip"
+import { Demo } from "@/components/demo"
+import { UploadImage } from "@/components/upload-image"
 
 const Home = () => {
   return (
@@ -80,7 +80,7 @@ const Home = () => {
 
       <Demo />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

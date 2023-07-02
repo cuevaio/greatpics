@@ -1,48 +1,47 @@
-"use client";
+"use client"
 
-import { type StaticImageData } from "next/image";
+import * as React from "react"
+import Image, { type StaticImageData } from "next/image"
+import { PopoverClose } from "@radix-ui/react-popover"
+import { motion } from "framer-motion"
+import { Dot } from "lucide-react"
 
-import * as React from "react";
-import { Button, buttonVariants } from "../ui/button";
-import Image from "next/image";
-import { Dot } from "lucide-react";
-import { AspectRatio } from "../ui/aspect-ratio";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils/ui";
+import { extractAI } from "@/lib/utils/demo_examples"
+import { cn } from "@/lib/utils/ui"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui/popover"
 
-import { PopoverClose } from "@radix-ui/react-popover";
-import { extractAI } from "@/lib/utils/demo_examples";
+import { AspectRatio } from "../ui/aspect-ratio"
+import { Button, buttonVariants } from "../ui/button"
 
 interface User {
-  name: string;
-  username: string;
+  name: string
+  username: string
 }
 
 const fetchUser = async () => {
-  const res = await fetch("https://randomuser.me/api?nat=us,fr&inc=name,login");
-  const data = await res.json();
+  const res = await fetch("https://randomuser.me/api?nat=us,fr&inc=name,login")
+  const data = await res.json()
 
-  const username = data.results[0].login.username;
-  const name = data.results[0].name.first + " " + data.results[0].name.last;
-  return { username, name } as User;
-};
+  const username = data.results[0].login.username
+  const name = data.results[0].name.first + " " + data.results[0].name.last
+  return { username, name } as User
+}
 
 export const TweetPreview = ({
   url,
   aspect_ratio,
   completion,
 }: {
-  url: string | StaticImageData;
-  aspect_ratio: number;
-  completion: string;
+  url: string | StaticImageData
+  aspect_ratio: number
+  completion: string
 }) => {
-  const [tweet, alt] = extractAI(completion);
-  const [user, setUser] = React.useState<User | null>(null);
+  const [tweet, alt] = extractAI(completion)
+  const [user, setUser] = React.useState<User | null>(null)
   const profile_pic = React.useMemo(() => {
     const options = [
       "lorelei",
@@ -52,15 +51,15 @@ export const TweetPreview = ({
       "avataaars",
       "big-ears",
       "croodles",
-    ];
-    const random = Math.floor(Math.random() * options.length);
-    const seed = (Math.random() + 1).toString(36).substring(7);
-    return `https://api.dicebear.com/6.x/${options[random]}/svg?seed=${seed}`;
-  }, []);
+    ]
+    const random = Math.floor(Math.random() * options.length)
+    const seed = (Math.random() + 1).toString(36).substring(7)
+    return `https://api.dicebear.com/6.x/${options[random]}/svg?seed=${seed}`
+  }, [])
 
   React.useEffect(() => {
-    fetchUser().then((user) => setUser(user));
-  }, []);
+    fetchUser().then((user) => setUser(user))
+  }, [])
 
   return (
     <div className="w-full gap-4 flex border rounded-lg p-4 pr-8">
@@ -133,5 +132,5 @@ export const TweetPreview = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

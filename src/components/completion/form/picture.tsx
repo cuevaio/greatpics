@@ -1,12 +1,14 @@
-import Image from "next/image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image"
+
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+
 export const Picture = ({
   url,
   aspect_ratio,
 }: {
-  url: string;
-  aspect_ratio: number;
+  url: string
+  aspect_ratio: number
 }) => {
   return (
     <Dialog>
@@ -28,5 +30,5 @@ export const Picture = ({
         />
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

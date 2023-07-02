@@ -1,11 +1,12 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { cn } from "@/lib/utils/ui";
-import { useScroll } from "@/lib/hooks/use-scroll";
+import Link from "next/link"
+
+import { useScroll } from "@/lib/hooks/use-scroll"
+import { cn } from "@/lib/utils/ui"
 
 export const Navbar = () => {
-  const scrolled = useScroll(50);
+  const scrolled = useScroll(50)
 
   return (
     <div
@@ -40,5 +41,5 @@ export const Navbar = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

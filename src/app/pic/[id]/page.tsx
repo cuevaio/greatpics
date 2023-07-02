@@ -1,16 +1,16 @@
-import { Completion } from "@/components/completion";
-import { getXataClient } from "@/lib/xata";
+import { getXataClient } from "@/lib/xata"
+import { Completion } from "@/components/completion"
 
 const getPic = async (id: string) => {
-  const xata = getXataClient();
-  const pic = await xata.db.pic.read(`rec_${id}`);
+  const xata = getXataClient()
+  const pic = await xata.db.pic.read(`rec_${id}`)
 
-  return pic;
-};
+  return pic
+}
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const id = params.id;
-  const pic = await getPic(id);
+  const id = params.id
+  const pic = await getPic(id)
 
   if (!pic) {
     return (
@@ -18,7 +18,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
         <h1 className="font-black text-4xl">404</h1>
         <p className="">Pic not found</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -32,7 +32,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
         aspect_ratio={pic.aspect_ratio || 1 / 1}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

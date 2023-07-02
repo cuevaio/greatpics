@@ -1,21 +1,24 @@
-import { cn } from "@/lib/utils/ui";
-import "./globals.css";
-import { Montserrat } from "next/font/google";
-import { Navbar } from "@/components/navbar";
-import { Toaster } from "@/components/ui/toaster";
-import { Footer } from "@/components/footer";
+import { cn } from "@/lib/utils/ui"
 
-const unbounded = Montserrat({ subsets: ["latin"] });
+import "./globals.css"
+
+import { Montserrat } from "next/font/google"
+
+import { Toaster } from "@/components/ui/toaster"
+import { Footer } from "@/components/footer"
+import { Navbar } from "@/components/navbar"
+
+const unbounded = Montserrat({ subsets: ["latin"] })
 
 export const metadata = {
   title: "GreatPics.app - Post great pics with AI",
   description: "AI-powered image captioning and social media posting",
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html
@@ -37,5 +40,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
+  )
 }
