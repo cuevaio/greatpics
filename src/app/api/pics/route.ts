@@ -65,8 +65,6 @@ export async function POST(request: Request) {
       aspect_ratio,
     });
 
-    const id = pic.id.split("_")[1];
-    console.log({ host });
     await fetch(
       `https://qstash.upstash.io/v1/publish/https://${host}/api/pics/delete`,
       {
@@ -75,14 +73,15 @@ export async function POST(request: Request) {
           Authorization: "Bearer " + String(process.env.UPSTASH_QSTASH_TOKEN),
           "Content-type": "application/json",
           "Upstash-Delay": "1m",
+          "Upstash-Deduplication-Id": `delete_${pic.id}`,
         },
-        body: JSON.stringify({ id, url }),
+        body: JSON.stringify({ id: pic.id, url }),
       }
     );
 
     return NextResponse.json(
       {
-        id,
+        id: pic.id.split("_")[1],
       },
       {
         status: 200,
@@ -95,8 +94,8 @@ export async function POST(request: Request) {
           : {},
       }
     );
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
     return NextResponse.json(
       {
         error: "Something went wrong.",
