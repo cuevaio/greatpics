@@ -1,13 +1,13 @@
-import { z } from "zod";
 export const runtime = "edge";
+
+import Replicate from "replicate";
+import { NextResponse } from "next/server";
+import { headers } from "next/headers";
+import { z } from "zod";
 
 import { imageRatelimit } from "@/lib/upstash";
 import { getClientID } from "@/lib/utils/get-client-id";
-
-import { NextResponse } from "next/server";
 import { getXataClient } from "@/lib/xata";
-
-import Replicate from "replicate";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_KEY || "",
@@ -44,18 +44,17 @@ export async function POST(request: Request) {
       }
     }
 
-    const { url, aspect_ratio } = await request.json();
+    const body = await request.json();
+    const headersList = headers();
+    const host = headersList.get("host");
 
-    const data = schema.parse({
-      url,
-      aspect_ratio,
-    });
+    const { url, aspect_ratio } = schema.parse(body);
 
     const output = await replicate.run(
       "salesforce/blip:2e1dddc8621f72155f24cf2e0adbde548458d3cab9f00c0139eea840d0ac4746",
       {
         input: {
-          image: data.url,
+          image: url,
         },
       }
     );
@@ -67,6 +66,19 @@ export async function POST(request: Request) {
     });
 
     const id = pic.id.split("_")[1];
+    console.log({ host });
+    await fetch(
+      `https://qstash.upstash.io/v1/publish/https://${host}/api/pics/delete`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + String(process.env.UPSTASH_QSTASH_TOKEN),
+          "Content-type": "application/json",
+          "Upstash-Delay": "1m",
+        },
+        body: JSON.stringify({ id, url }),
+      }
+    );
 
     return NextResponse.json(
       {
