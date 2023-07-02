@@ -1,5 +1,5 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { imageRatelimit } from "@/lib/redis";
+import { imageRatelimit } from "@/lib/upstash";
 import { getClientID } from "@/lib/utils/get-client-id";
 const f = createUploadthing();
 

@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { aiRatelimit } from "@/lib/redis";
+import { aiRatelimit } from "@/lib/upstash";
 import { getClientID } from "@/lib/utils/get-client-id";
 
 // Create an OpenAI API client (that's edge friendly!)

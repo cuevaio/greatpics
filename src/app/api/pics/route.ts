@@ -1,7 +1,7 @@
 import { z } from "zod";
 export const runtime = "edge";
 
-import { imageRatelimit } from "@/lib/redis";
+import { imageRatelimit } from "@/lib/upstash";
 import { getClientID } from "@/lib/utils/get-client-id";
 
 import { NextResponse } from "next/server";
