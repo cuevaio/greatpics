@@ -1,6 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx --no -- commitlint --edit ${1}
-pretty-quick --staged
-next lint
+npx pretty-quick --staged
