@@ -16,8 +16,8 @@ import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
 import type { OurFileRouter } from "@/app/api/uploadthing/core"
 
+import { ImagePreview } from "../preview"
 import { Dropzone } from "./dropzone"
-import { ImagePreview } from "./preview"
 
 const { useUploadThing } = generateReactHelpers<OurFileRouter>()
 

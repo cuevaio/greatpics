@@ -41,7 +41,7 @@ export const UploadImage = () => {
             max file size is 8MB.
           </DialogDescription>
         </DialogHeader>
-        <div className="bg-secondary p-10">
+        <div className="bg-primary/5 p-10">
           <UploadImageDialogContent />
         </div>
       </DialogContent>

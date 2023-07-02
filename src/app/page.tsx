@@ -15,7 +15,7 @@ import { UploadImage } from "@/components/upload-image"
 const Home = () => {
   return (
     <div className="relative">
-      <div className="background-gradient absolute -top-10 left-1/2 -z-40 aspect-square w-[80%] -translate-x-1/2 sm:-top-32 md:-top-48" />
+      <div className="background-gradient absolute -top-10 left-1/2 -z-40 aspect-square w-[70%] -translate-x-1/2 sm:-top-32 md:-top-48" />
       <motion.div
         initial="hidden"
         whileInView="show"

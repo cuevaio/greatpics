@@ -9,6 +9,7 @@
       hsl(var(--primary) / 0.5),
       hsl(var(--background) / 1)
     );
+    filter: blur(100px);
   }
 }
 
