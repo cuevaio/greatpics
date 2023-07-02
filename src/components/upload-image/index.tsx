@@ -21,14 +21,14 @@ export const UploadImage = () => {
         <motion.button
           className={cn(
             buttonVariants({ variant: "default" }),
-            "mx-auto my-8 flex rounded-lg"
+            "mx-auto my-12 flex h-max rounded-lg p-4 font-bold"
           )}
           variants={{
             hidden: { opacity: 0, y: -10 },
             show: { opacity: 1, y: 0, transition: { type: "spring" } },
           }}
         >
-          <UploadCloud className="mr-2 h-4 w-4" /> Upload photo
+          <UploadCloud className="mr-2 h-4 w-4" /> Upload your picture
         </motion.button>
       </DialogTrigger>
       <DialogContent className="gap-0 divide-y rounded-lg p-0 sm:max-w-[425px]">
