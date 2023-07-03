@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react"
+
 import { cn } from "@/lib/utils/ui"
 
 import "./globals.css"
@@ -29,6 +31,7 @@ export default function RootLayout({
       }}
     >
       <body className={cn(unbounded.className)}>
+        <Analytics />
         <Toaster />
         <div className="fixed -z-50 h-[100dvh] w-full" />
         <div id="content" className="h-[100dvh] w-full overflow-auto">

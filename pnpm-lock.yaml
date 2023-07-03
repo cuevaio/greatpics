@@ -37,6 +37,9 @@ dependencies:
   "@upstash/redis":
     specifier: ^1.22.0
     version: 1.22.0
+  "@vercel/analytics":
+    specifier: ^1.0.1
+    version: 1.0.1
   "@xata.io/client":
     specifier: ^0.24.3
     version: 0.24.3(typescript@5.1.6)
@@ -1986,6 +1989,13 @@ packages:
       isomorphic-fetch: 3.0.0
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@vercel/analytics@1.0.1:
+    resolution:
+      {
+        integrity: sha512-Ux0c9qUfkcPqng3vrR0GTrlQdqNJ2JREn/2ydrVuKwM3RtMfF2mWX31Ijqo1opSjNAq6rK76PwtANw6kl6TAow==,
+      }
     dev: false
 
   /@vue/compiler-core@3.3.4:

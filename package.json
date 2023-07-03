@@ -23,6 +23,7 @@
     "@uploadthing/shared": "^5.0.1",
     "@upstash/ratelimit": "^0.4.3",
     "@upstash/redis": "^1.22.0",
+    "@vercel/analytics": "^1.0.1",
     "@xata.io/client": "^0.24.3",
     "ai": "2.1.12",
     "autoprefixer": "10.4.14",
@@ -49,6 +50,9 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -57,9 +61,6 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "husky": "^8.0.0",
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
-    "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "pretty-quick": "^3.1.3"
