@@ -129,24 +129,6 @@ const AboutPage = () => {
           </li>
           <li>
             <a
-              href="https://twitter.com/nutlope"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Hassan El Mghari
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://twitter.com/hqasmei"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Hosna Qasmei
-            </a>
-          </li>
-          <li>
-            <a
               href="https://twitter.com/samselikoff"
               target="_blank"
               rel="noopener noreferrer"
