@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Twitter } from "lucide-react"
 import Balancer from "react-wrap-balancer"
 
 import {
@@ -30,6 +31,19 @@ const Home = () => {
           },
         }}
       >
+        <motion.a
+          variants={{
+            hidden: { opacity: 0, y: -10 },
+            show: { opacity: 1, y: 0, transition: { type: "spring" } },
+          }}
+          href="https://twitter.com/cuevantn/status/1675946040074072069"
+          target="_blank"
+          rel="noreferrer"
+          className="mx-auto mb-5 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-lg border border-primary/70 px-7 py-2 text-primary/70 transition-colors hover:border-primary/90 hover:text-primary/90"
+        >
+          <Twitter className="h-5 w-5" />
+          <p className="text-sm font-semibold">Introducing Great Pics</p>
+        </motion.a>
         <div className="absolute inset-0 -z-40" />
         <div className="mx-auto max-w-[60rem]">
           <motion.h1
