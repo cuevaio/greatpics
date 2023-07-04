@@ -13,8 +13,9 @@ import { Navbar } from "@/components/navbar"
 const unbounded = Montserrat({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "GreatPics.app - Post great pics with AI",
-  description: "AI-powered image captioning and social media posting",
+  title: "GreatPics.app - Turn your pics into tweets using AI",
+  description:
+    "Upload a picture, write a draft and instantly get back an accessible tweet. 100% free and privacy-friendly.",
 }
 
 export default function RootLayout({
